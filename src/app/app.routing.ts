@@ -8,7 +8,11 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 const routes: Routes =[
   {
     path: '',
+<<<<<<< HEAD
     redirectTo: 'login',
+=======
+    redirectTo: 'principal',
+>>>>>>> 1b95929f192724ae84ca4b85d2db9991ab06453f
     pathMatch: 'full',
   }, {
     path: '',
