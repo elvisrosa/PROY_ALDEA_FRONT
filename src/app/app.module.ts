@@ -8,6 +8,10 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormField } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -18,6 +22,9 @@ import { LoginComponent } from './login/login.component';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
   declarations: [
     AppComponent,

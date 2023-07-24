@@ -1,0 +1,25 @@
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: flex-start;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.login-container {
+    /* Asegúrate de ajustar la URL a la ubicación correcta de tu imagen de fondo */
+    background-image: url('../../assets/img/fondo-horizontal.jpg');
+    background-size: cover; /* Ajustar el tamaño de la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centrar la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evitar que la imagen se repita si es más pequeña que el contenedor */
+    height: 100vh; /* Establecer una altura para que la imagen ocupe toda la altura de la ventana */
+}
+
+#login {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo blanco sólido para el card de login */
+    margin-right: 40%;
+}
