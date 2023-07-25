@@ -8,6 +8,7 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { LoginGuard } from 'app/guards/login.guard';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -52,7 +53,8 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'principal',      component: DashboardComponent },
+    { path: 'principal',   canActivate:[LoginGuard],
+    component: DashboardComponent },
     { path: 'perfil-usuario',   component: UserProfileComponent },
     { path: 'lista-niños',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
