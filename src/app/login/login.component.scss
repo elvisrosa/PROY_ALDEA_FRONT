@@ -13,10 +13,18 @@
 .login-container {
     /* Asegúrate de ajustar la URL a la ubicación correcta de tu imagen de fondo */
     background-image: url('../../assets/img/fondo-horizontal.jpg');
-    background-size: cover; /* Ajustar el tamaño de la imagen para cubrir todo el contenedor */
+    background-size: 100% 100%; /* Ajustar el tamaño de la imagen para cubrir todo el contenedor */
     background-position: center; /* Centrar la imagen en el contenedor */
     background-repeat: no-repeat; /* Evitar que la imagen se repita si es más pequeña que el contenedor */
     height: 100vh; /* Establecer una altura para que la imagen ocupe toda la altura de la ventana */
+}
+
+@media (max-width:600px) {
+    .login-container {
+        max-width: 100%;
+        padding: 130px;
+    }
+    
 }
 
 #login {
