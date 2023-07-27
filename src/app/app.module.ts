@@ -8,10 +8,17 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormField } from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { ButtonComponent } from './layouts/buttons/button/button.component';
+import { NinosCrearComponent } from './modules/ninos-crear/ninos-crear.component';
+
+
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   imports: [
@@ -24,12 +31,17 @@ import {MatCardModule} from '@angular/material/card';
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    CommonModule,
+    MatStepperModule,
+    MatFormFieldModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
+    ButtonComponent,
+    NinosCrearComponent
 
   ],
   providers: [],

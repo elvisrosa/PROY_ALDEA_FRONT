@@ -9,6 +9,7 @@ import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { LoginGuard } from 'app/guards/login.guard';
+import { NinosCrearComponent } from 'app/modules/ninos-crear/ninos-crear.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -53,7 +54,8 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'principal',   canActivate:[LoginGuard],
+    // canActivate:[LoginGuard],
+    { path: 'principal',
     component: DashboardComponent },
     { path: 'perfil-usuario',   component: UserProfileComponent },
     { path: 'lista-niños',     component: TableListComponent },
@@ -62,4 +64,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'permiso-tutores',        component: UpgradeComponent },
+    {
+        path: 'crear-niños',
+        component: NinosCrearComponent
+    }
 ];

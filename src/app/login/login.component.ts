@@ -7,6 +7,7 @@ import { MensajesService } from 'app/services/mensajes.service';
 import { ServiceTokenService } from 'app/services/service-token.service';
 import { Token } from '@angular/compiler';
 import { getCookie } from 'typescript-cookie';
+import { faEye, faEyeSlash, faPen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,11 @@ import { getCookie } from 'typescript-cookie';
 
 export class LoginComponent implements OnInit {
   isSubmitting = false;  
+  faPen = faPen;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+  showPassword = false;
+  status: string = 'init';
 
   loginForm = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
@@ -35,25 +41,31 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/principal');           
     }
   }
-
+  
   login() { 
+    this.router.navigateByUrl('/principal');           
     this.isSubmitting = true;
-    if(this.loginForm.get('username').value != '' || this.loginForm.get('password').value != ''){
-      this.authService.iniciarSesion(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
-        {
-          next: (resp: any) => {
-            if (resp && resp.estado === false) {
-              this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);       
-            } else{    
-              this.router.navigateByUrl('/principal');           
-            }
-          },
-          error: ()=> this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000)
-        }
-      )
-    }else{
-      this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);     
-    }
+    // if(this.loginForm.valid){
+    //   this.status = 'loading';
+    //   this.authService.iniciarSesion(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
+    //     {
+    //       next: (resp: any) => {
+    //         if (resp && resp.estado === false) {
+    //           this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);       
+    //         } else{    
+    //           this.status='succes';
+    //           this.router.navigateByUrl('/principal');           
+    //         }
+    //       },
+    //       error: ()=> {this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000)
+    //       this.status='failed'}
+    //     }
+    //   )
+    // }else{
+    //   this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);     
+    //   this.status='failed'
+    //   //this.loginForm.markAllAsTouched();
+    // }
   }
 
 }

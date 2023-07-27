@@ -19,8 +19,13 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'niñoscrear',
+    redirectTo: 'crear-niños',
+    pathMatch: 'full',
+  },
+  {
     path: '',
-    canActivate:[LoginGuard],
+    // canActivate:[LoginGuard],
     component: AdminLayoutComponent,
     children: [{
       path: '',

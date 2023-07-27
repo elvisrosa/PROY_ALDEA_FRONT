@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   user$ = new BehaviorSubject<UsuarioModel | null>(null);
-  isLogin:boolean=false;
+  private isLogin:boolean=false;
 
   url: string = environment.URL;
   constructor(private http: HttpClient,
@@ -40,7 +40,7 @@ export class AuthService {
     this.isLogin=false;
   }
 
-  get getLogin(){
+  get getLogin():boolean{
     return this.isLogin;
   }
 
