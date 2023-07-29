@@ -1,33 +1,53 @@
-.d-flex {
-    display: flex;
-}
+#login {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px;
 
-.justify-content-center {
-    justify-content: flex-start;
-}
-
-.align-items-center {
-    align-items: center;
 }
 
 .login-container {
-    /* Asegúrate de ajustar la URL a la ubicación correcta de tu imagen de fondo */
+
     background-image: url('../../assets/img/fondo-horizontal.jpg');
-    background-size: 100% 100%; /* Ajustar el tamaño de la imagen para cubrir todo el contenedor */
-    background-position: center; /* Centrar la imagen en el contenedor */
-    background-repeat: no-repeat; /* Evitar que la imagen se repita si es más pequeña que el contenedor */
-    height: 100vh; /* Establecer una altura para que la imagen ocupe toda la altura de la ventana */
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+
 }
 
-@media (max-width:600px) {
-    .login-container {
-        max-width: 100%;
-        padding: 130px;
+#ajustar {
+
+    margin: 0px 20px;
+
+}
+
+
+
+/* Estilos para pantallas grandes */
+@media (min-width: 768px) {
+    .d-flex {
+        display: flex;
     }
-    
-}
 
-#login {
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo blanco sólido para el card de login */
-    margin-right: 40%;
+    .justify-content-center {
+        justify-content: flex-start;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .login-container {
+
+        background-image: url('../../assets/img/fondo-horizontal.jpg');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+
+    }
+
+    #login {
+        margin-right: 40%;
+    }
+
 }
