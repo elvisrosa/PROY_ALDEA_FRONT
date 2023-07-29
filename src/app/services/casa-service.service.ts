@@ -14,4 +14,8 @@ export class CasaServiceService {
     return this.http.get(`${this.url}/casa/listar`);
   }
 
+  obtenerCasaPorTutor(id:number){
+    return this.http.get(`${this.url}/tutor/listarcasas/${id}`);
+  }
+
 }

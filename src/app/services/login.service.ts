@@ -27,7 +27,6 @@ export class AuthService {
           this.user$.next(resp.usuario);
           this.token.setToken(resp.token);
           this.token.setUsuario(resp.usuario);
-          console.log(this.user$.value);
         }
       })
     );

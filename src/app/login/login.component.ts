@@ -43,29 +43,30 @@ export class LoginComponent implements OnInit {
   }
   
   login() { 
-    this.router.navigateByUrl('/principal');           
+    //this.router.navigateByUrl('/principal');           
     this.isSubmitting = true;
-    // if(this.loginForm.valid){
-    //   this.status = 'loading';
-    //   this.authService.iniciarSesion(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
-    //     {
-    //       next: (resp: any) => {
-    //         if (resp && resp.estado === false) {
-    //           this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);       
-    //         } else{    
-    //           this.status='succes';
-    //           this.router.navigateByUrl('/principal');           
-    //         }
-    //       },
-    //       error: ()=> {this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000)
-    //       this.status='failed'}
-    //     }
-    //   )
-    // }else{
-    //   this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);     
-    //   this.status='failed'
-    //   //this.loginForm.markAllAsTouched();
-    // }
+    if(this.loginForm.valid){
+      this.status = 'loading';
+      this.authService.iniciarSesion(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
+        {
+          next: (resp: any) => {
+            console.log(resp)
+            if (resp && resp.estado === false) {
+              this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);       
+            } else{    
+              this.status='succes';
+              this.router.navigateByUrl('/principal');           
+            }
+          },
+          error: ()=> {this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000)
+          this.status='failed'}
+        }
+      )
+    }else{
+      this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);     
+      this.status='failed'
+      //this.loginForm.markAllAsTouched();
+    }
   }
 
 }

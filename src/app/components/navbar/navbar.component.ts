@@ -12,7 +12,7 @@ import { UsuarioModel } from '../../models/usuario.model';
 })
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
-    usuario:UsuarioModel=null;
+    usuario:any=null;
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
         this.auth.user$.subscribe( 
             {
                 next: resp=>{
-                    this.usuario= resp;
+                    this.usuario= resp['tutor'];
                 }
             }
         )
