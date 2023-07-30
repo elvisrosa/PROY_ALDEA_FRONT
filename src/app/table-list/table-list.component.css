@@ -2,3 +2,74 @@
     color: #050202;
 
 }
+
+.cont-princ {
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    text-align: left;
+
+}
+
+.table th {
+    background-color: #f2f2f2;
+
+    font-weight: bold;
+}
+
+.buscar-input {
+    margin-bottom: 10px;
+    float: right;
+    margin-left: 10px;
+}
+
+.lab {
+    font-weight: bold;
+    color: #050202;
+}
+
+
+#selector-filas {
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+}
+
+
+#selector-filas option {
+    background-color: #fff;
+    color: #333;
+}
+
+
+#selector-filas option:hover,
+#selector-filas option:focus {
+    background-color: #f2f2f2;
+    outline: none;
+}
+
+
+.cont-princ {
+
+    margin: 20px 0;
+
+}
+
+.contenedor-filas-mostrar {
+
+    margin-bottom: 10px;
+
+}

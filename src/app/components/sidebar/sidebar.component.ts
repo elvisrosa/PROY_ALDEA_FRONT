@@ -8,15 +8,17 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/principal', title: 'Principal',  icon: 'dashboard', class: '' },
-    { path: '/crear-niños', title: 'Crear Niño',  icon: 'dashboard', class: '' },
-    { path: '/perfil-usuario', title: 'Mi perfil',  icon:'person', class: '' },
-    { path: '/lista-niños', title: 'Niños',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/permiso-tutores', title: 'Permiso Tutores',  icon:'unarchive', class: 'active-pro' },
+
+  { path: '/principal', title: 'Principal', icon: 'dashboard', class: '' },
+  { path: '/crear-niños', title: 'Crear Niño', icon: 'library_books', class: '' },
+  { path: '/perfil-usuario', title: 'Mi perfil', icon: 'person', class: '' },
+  { path: '/lista-niños', title: 'Niños', icon: 'content_paste', class: '' },
+  { path: '/permiso-tutores', title: 'Permiso Tutores', icon: 'unarchive', class: '' },
+  // { path: '/typography', title: 'Typography', icon: 'library_books', class: '' },
+  // { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
+  // { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
+  // { path: '/notifications', title: 'Notifications', icon: 'notifications', class: '' },
+
 
 ];
 

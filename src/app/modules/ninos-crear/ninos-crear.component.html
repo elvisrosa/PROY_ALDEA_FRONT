@@ -1,7 +1,8 @@
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   <!-- {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}} -->
 </button>
-
+<nav class="navbar navbar-transparent">
+</nav>
 
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">

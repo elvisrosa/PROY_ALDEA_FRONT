@@ -4,50 +4,100 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Datos de niños</h4>
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                        <h4 class="card-title">Datos de niños</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class="COLOR">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Cedula
-                                    </th>
-                                    <th>
-                                        Nombres
-                                    </th>
-                                    <th>
-                                        Apellidos
-                                    </th>
-                                    <th>
-                                        Fecha Nacimiento
-                                    </th>
-                                    <th>Lugar de Nacimiento </th>
-                                    <th>Edad </th>
-                                    <th>Sexo </th>
-                                    <th>Telefono </th>
-
-                                </thead>
-                                <tbody>
+                    <div class="cont-princ">
+                        <div class="contenedor-filas-mostrar">
+                            <label for="selector-filas" class="lab">Filas a mostrar:</label>
+                            <select id="selector-filas" [(ngModel)]="filasAMostrar" (change)="ajustarFilas()">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <input type="text" id="buscar-ninos" class="buscar-input" placeholder="Buscar niños"
+                                (keyup)="filtrarTabla($event)">
+                            <!-- <button mat-button matStepperPrevious class="btn btn-danger btn-round">Nuevo niño</button> -->
+                        </div>
+                        <div>
+                            <table datatable class="table hover">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            1
-                                        </td>
-
+                                        <th>ID</th>
+                                        <th>Cedula</th>
+                                        <th>Apellidos</th>
+                                        <th>Fecha de nacimiento</th>
+                                        <th>Lugar de nacimiento</th>
+                                        <th>Edad</th>
+                                        <th>Sexo</th>
+                                        <th>Telefono</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla-ninos">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Foo</td>
+                                        <td>Bar</td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            2
-                                        </td>
-
+                                        <td>2</td>
+                                        <td>Someone</td>
+                                        <td>Youknow</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Iamout</td>
+                                        <td>Ofinspiration</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Yoda</td>
+                                        <td>Skywalker</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Patrick</td>
+                                        <td>Dupont</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Barack</td>
+                                        <td>Obama</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>François</td>
+                                        <td>Holland</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Michel</td>
+                                        <td>Popo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Chuck</td>
+                                        <td>Norris</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Simon</td>
+                                        <td>Robin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>Louis</td>
+                                        <td>Lin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>Zelda</td>
+                                        <td>Link</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
