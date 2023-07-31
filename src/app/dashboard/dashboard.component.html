@@ -1,6 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
+            <ng-container *ngIf="casas.length>0; else noContent">
                 <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let car of casas">
                     <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
@@ -20,6 +21,12 @@
                         </div>
                     </div>
                 </div>
+            </ng-container>
+
+                <ng-template #noContent>
+                    Aun no tienes ninguna casa asignada, o tu casa esta en estado incativo!
+                    Comunicate con usuario ADMINISTRADOR
+                </ng-template>
 
             <!-- <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
@@ -72,7 +79,7 @@
                       </div>
                   </div>
               </div>
-          </div> -->
+          </div>-->
 
 
         </div>
@@ -96,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- <div class="col-md-4">
               <div class="card card-chart">
                   <div class="card-header card-header-warning">

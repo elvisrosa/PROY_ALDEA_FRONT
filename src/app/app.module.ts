@@ -40,7 +40,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule
+    
 
   ],
   declarations: [
@@ -48,7 +49,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AdminLayoutComponent,
     LoginComponent,
     ButtonComponent,
-    NinosCrearComponent
+    NinosCrearComponent,
+    //UpgradeComponent
 
   ],
   providers: [],

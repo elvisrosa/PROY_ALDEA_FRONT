@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AuthService } from 'app/services/login.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -6,17 +8,15 @@ declare interface RouteInfo {
   title: string;
   icon: string;
   class: string;
+  roles?:string[];
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/principal', title: 'Principal',  icon: 'dashboard', class: '' },
-    { path: '/crear-niños', title: 'Crear Niño',  icon: 'dashboard', class: '' },
-    { path: '/perfil-usuario', title: 'Mi perfil',  icon:'person', class: '' },
-    { path: '/lista-niños', title: 'Niños',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/permiso-tutores', title: 'Permiso Tutores',  icon:'unarchive', class: 'active-pro' },
+    { path: '/principal', title: 'Principal',  icon: 'dashboard', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
+    { path: '/crear-niños', title: 'Crear Niño',  icon: 'dashboard', class: '' , roles:['ADMIN', 'ADMINT']},
+    { path: '/lista-niños', title: 'Niños',  icon:'content_paste', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
+    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
+    { path: '/perfil-usuario', title: 'Usuario - Crear',  icon:'person', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
+    { path: '/permiso-tutores', title: 'Permiso Tutores',  icon:'unarchive', class: 'active-pro', roles:['ADMINT'] },
 
 ];
 
@@ -27,11 +27,19 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  roles:string[];
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.auth.user$.subscribe( {
+      next: (resp:any)=>{
+        this.roles=[...resp.roles];
+        console.log(this.roles)
+        this.menuItems = this.filtarRouterPorRole(this.roles);
+      }
+    })
+   
   }
   isMobileMenu() {
     if ($(window).width() > 991) {
@@ -39,4 +47,10 @@ export class SidebarComponent implements OnInit {
     }
     return true;
   };
+
+  filtarRouterPorRole(userRoles: string[]):RouteInfo[]{
+    return ROUTES.filter(route => {
+      return route.roles.some(role => userRoles.includes(role));
+    });
+  }
 }

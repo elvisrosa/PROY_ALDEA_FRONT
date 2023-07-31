@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Casa } from 'app/models/casa.modelo';
 import { CasaServiceService } from 'app/services/casa-service.service';
 import { AuthService } from 'app/services/login.service';
 import * as Chartist from 'chartist';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +15,7 @@ export class DashboardComponent implements OnInit {
   constructor(private casaService: CasaServiceService,
     private auth: AuthService) { }
 
-  casas: any[] = [];
+  casas: Casa[] = [];
 
   roles: String[] = [];
   startAnimationForLineChart(chart) {
@@ -75,7 +77,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.auth.user$.subscribe(
       {
-        next: resp => {
+        next: (resp:any) => {
           this.roles = resp.roles;
           if (resp.roles.includes("ADMINT") || resp.roles.includes("ADMIN")) {
             this.obtenerCasas();
@@ -116,19 +118,19 @@ export class DashboardComponent implements OnInit {
       ]
     };
 
-    const optionsCompletedTasksChart: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
-    }
+    // const optionsCompletedTasksChart: any = {
+    //   lineSmooth: Chartist.Interpolation.cardinal({
+    //     tension: 0
+    //   }),
+    //   low: 0,
+    //   high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    //   chartPadding: { top: 0, right: 0, bottom: 0, left: 0 }
+    // }
 
-    var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+    // var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
 
     // start animation for the Completed Tasks Chart - Line Chart
-    this.startAnimationForLineChart(completedTasksChart);
+    // this.startAnimationForLineChart(completedTasksChart);
 
 
 
@@ -159,16 +161,16 @@ export class DashboardComponent implements OnInit {
         }
       }]
     ];
-    var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+    // var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
-    //start animation for the Emails Subscription Chart
-    this.startAnimationForBarChart(websiteViewsChart);
+    // //start animation for the Emails Subscription Chart
+    // this.startAnimationForBarChart(websiteViewsChart);
   }
 
   obtenerCasas() {
     this.casaService.obetenerCasas().subscribe(
       {
-        next: (resp: String[]) => {
+        next: (resp: any) => {
           //this.casas = resp.filter(rep=>rep['estado']===1)
           this.casas = [...resp];
         },
@@ -176,7 +178,7 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
-  id: number=0;
+  id?: number=0;
   traerCasaPorPerfilTutor() {
     this.auth.user$.subscribe(
       {
@@ -189,7 +191,8 @@ export class DashboardComponent implements OnInit {
     this.casaService.obtenerCasaPorTutor(this.id).subscribe(
       {
         next: (resp:any)=>{
-          this.casas = [...resp];
+          this.casas = resp.filter(casa=>casa.estado===1)
+          //this.casas = [...resp];
           console.log(resp)
         }
       }

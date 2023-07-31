@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    // canActivate:[LoginGuard],
+    canActivate:[LoginGuard],
     component: AdminLayoutComponent,
     children: [{
       path: '',
