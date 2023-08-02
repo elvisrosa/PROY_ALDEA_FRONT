@@ -1,0 +1,238 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  
+</button>
+
+
+<mat-stepper [linear]="isLinear" #stepper> <!--Ingreso Niños-->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Niños</ng-template>
+      <mat-form-field>
+        <mat-label>Cédula</mat-label>
+        <input matInput placeholder="Ingrese cédula" formControlName="cedula" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Ingrese  nombre completo" formControlName="nombre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Ingrese los apellidos completo" formControlName="apellido" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Lugar de nacimiento</mat-label>
+        <input matInput placeholder="Ingrese lugar de nacimiento" formControlName="lugnac" required>
+      </mat-form-field>
+      <ng-template matStepLabel>Edad</ng-template>
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput placeholder="Ingrese edad" formControlName="edad" type="number" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select>
+          <mat-option value="">masculino</mat-option>
+          <mat-option value="">femenino</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Ingrese telefono" formControlName="numerico" type="number" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+      </div>
+    </form>
+
+  </mat-step> <!--Bautizo-->
+  <mat-step [stepControl]="secondFormGroup" label="Bautismo">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>id_bautizo</mat-label>
+        <mat-select>
+          <mat-option value="">1</mat-option>
+          <mat-option value="">2</mat-option>
+          <mat-option value="">.3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+        <!-- <button mat-button matStepperPrevious class="btn btn-danger btn-round">Regresar</button> -->
+      </div>
+
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup"> <!--Casa-->
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Casa</ng-template>
+
+      <mat-form-field>
+        <mat-label>Nombre Casa</mat-label>
+        <input matInput placeholder="Ingrese  nombre Casa" formControlName="nombre" required>
+      </mat-form-field>
+
+      <ng-template matStepLabel>Casa Número</ng-template>
+      <mat-form-field>
+        <mat-label>Casa Número</mat-label>
+        <input matInput placeholder="Ingrese Número de Casa" formControlName="casaN" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Ingrese telefono Casa" formControlName="numerico" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput placeholder="Ingrese  Dirección Casa" formControlName="direccion" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup"> <!--Padre-->
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Padre</ng-template>
+      
+      <mat-form-field>
+        <mat-label>Cédula</mat-label>
+        <input matInput placeholder="Ingrese cédula" formControlName="cedula" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Ingrese  nombre completo" formControlName="nombre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Ingrese los apellidos completo" formControlName="apellido" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <ng-template matStepLabel>Edad</ng-template>
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput placeholder="Ingrese edad" formControlName="edad" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Ingrese telefono" formControlName="numerico" type="number" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup"> <!--Madre-->
+    <form [formGroup]="firstFormGroup">
+
+      <ng-template matStepLabel>Madre</ng-template>
+
+      <mat-form-field>
+        <mat-label>Cédula</mat-label>
+        <input matInput placeholder="Ingrese cédula" formControlName="cedula" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Ingrese  nombre completo" formControlName="nombre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Ingrese los apellidos completo" formControlName="apellido" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <ng-template matStepLabel>Edad</ng-template>
+      <mat-form-field>
+        <mat-label>Edad</mat-label>
+        <input matInput placeholder="Ingrese edad" formControlName="edad" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Ingrese teléfono" formControlName="numerico" type="number" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="firstFormGroup"> <!--Educación-->
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Educación</ng-template>
+
+      <mat-form-field>
+        <mat-label>Nombre Escuela</mat-label>
+        <input matInput placeholder="Ingrese  nombre de la Escuela" formControlName="nombre" required>
+      </mat-form-field>
+
+      <ng-template matStepLabel>Nivel actual</ng-template>
+      <mat-form-field>
+        <mat-label>Grado</mat-label>
+        <input matInput placeholder="Ingrese último grado cursado" formControlName="nombre" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput placeholder="Ingrese telefono escuela" formControlName="numerico" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput placeholder="Ingrese  Dirección de la Escuela" formControlName="direccion" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext class="btn btn-success btn-round">Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+
+  <mat-step>
+    <ng-template matStepLabel>Finalizar</ng-template>
+    <div>
+      <button mat-button matStepperNext class="btn btn-success btn-round">Guardar</button>
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+    </div>
+  </mat-step>
+</mat-stepper>
