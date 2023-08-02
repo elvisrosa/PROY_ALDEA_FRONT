@@ -5,3 +5,41 @@
     font-size: 30px;
     margin-top: 80px;
 }
+
+.carta-contenido {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carta {
+    width: calc(50% - 10px);
+
+}
+
+
+.card {
+    width: 14rem;
+    max-height: 300px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.card-body {
+    padding: 10px;
+}
+
+
+.card-category {
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    padding: 8px 16px;
+}
