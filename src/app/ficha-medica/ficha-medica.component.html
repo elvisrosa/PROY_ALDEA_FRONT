@@ -14,13 +14,13 @@
                               <div class="row">
                                   <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Nombres" type="text" class="form-control" id="nombres" >
+                                      <input matInput placeholder="Nombres" type="text" formControlName="nombre" required>
                                       
                                     </mat-form-field>
                                   </div>
                                   <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Apellidos" type="text" class="form-control" id="apellidos" >
+                                      <input matInput placeholder="Apellidos"  type="text" formControlName="apellido" required >
                                     </mat-form-field>
                                   </div>
                               </div>
@@ -29,13 +29,13 @@
                                 <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
                                     
-                                    <input matInput placeholder="Edad" type="number" required="">
+                                    <input matInput placeholder="Edad" type="number" formControlName="edad" required>
                                   </mat-form-field>
                                 </div>
                                 
                                 <div class="col-md-6">
                                   
-                                    <select id="sexo" class="form-control">
+                                    <select id="sexo" class="form-control" >
                                       <option selected>Sexo</option>
                                       <option value="masculino">Masculino</option>
                                       <option value="femenino">Femenino</option>
@@ -47,12 +47,12 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Peso" type="text">
+                                  <input matInput placeholder="Peso" type="number"   formControlName="Peso" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Talla" type="text">
+                                  <input matInput placeholder="Talla" type="number"   formControlName="talla" required>
                                 </mat-form-field>
                               </div>
                           </div>
@@ -61,10 +61,10 @@
                             <div class="col-md-6">
                               <mat-form-field class="example-full-width">
                                 
-                                <input matInput placeholder="Medico Tratante" type="text">
+                                <input matInput placeholder="Medico Tratante" type="text"   formControlName="medico" required>
                               </mat-form-field>
                             </div>
-                            
+                
                             <div class="col-md-6">
                               
                                 <select id="Tsangre" class="form-control">
@@ -87,7 +87,7 @@
                                   <div class="col-md-12">
                                     <label>Diagnostico</label>
                                     <mat-form-field class="example-full-width">
-                                       <textarea matInput placeholder=></textarea>
+                                       <textarea matInput placeholder type="text" formControlName="diagnostico" required></textarea>
                                      </mat-form-field>
                                       
                                   </div>
@@ -97,7 +97,7 @@
                                 <div class="col-md-12">
                                   <label>Tratamiento</label>
                                   <mat-form-field class="example-full-width">
-                                     <textarea matInput placeholder=></textarea>
+                                     <textarea matInput placeholder type="text"   formControlName="tratamiento" required></textarea>
                                    </mat-form-field>
                                     
                                 </div>
@@ -107,7 +107,7 @@
                               <div class="col-md-12">
                                 <label>Medicamentos solicitados </label>
                                 <mat-form-field class="example-full-width">
-                                   <textarea matInput placeholder=></textarea>
+                                   <textarea matInput placeholder type="text"   formControlName="medicamentos" required></textarea>
                                  </mat-form-field>
                                   
                               </div>
@@ -123,23 +123,7 @@
                       </div>
                   </div>
               </div>
-              <!--
-              <div class="col-md-4">
-                  <div class="card card-profile">
-                      <div class="card-profile">
-                          <a href="javascript:void(0)">
-                              <img class="img" src="./assets/img/faces/logo.png" width="100" height="100" />
-                          </a>
-                      </div>
-                      <div class="card-body">
-                          <h6 class="card-category text-gray">Fundación Aldea</h6>
-                          <h4 class="card-title">Cristo Rey</h4>
-                          <p class="card-description">
-                              Esta es la ficha medica
-                          </p>
-                      </div>
-                  </div>
-              </div>-->
+              
           </div>
       </div>
     </div>
