@@ -1,7 +1,8 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-table-list',
@@ -10,51 +11,21 @@ import { Router } from '@angular/router';
 })
 export class TableListComponent implements OnInit {
 
-  filasAMostrar = 5;
+  dtOptions: DataTables.Settings = {};
 
-  constructor(private router: Router) { }
-
-  filtrarTabla(event: any) {
-    const input = event.target;
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById('tabla-ninos');
-    const rows = table.getElementsByTagName('tr');
-
-    for (let i = 0; i < rows.length; i++) {
-      const td = rows[i].getElementsByTagName('td')[1];
-      if (td) {
-        const txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          rows[i].style.display = '';
-        } else {
-          rows[i].style.display = 'none';
-        }
-      }
-    }
-    this.ajustarFilas(); // Faltaba los paréntesis aquí
-  }
-
-  ajustarFilas() {
-    const table = document.getElementById('tabla-ninos');
-    const rows = table.getElementsByTagName('tr');
-
-    for (let i = 0; i < this.filasAMostrar; i++) {
-      if (rows[i]) {
-        rows[i].style.display = '';
-      }
-    }
-
-    for (let i = this.filasAMostrar; i < rows.length; i++) {
-      rows[i].style.display = 'none';
-    }
-  }
-
-  redirigir() {
-
-    this.router.navigate(['/crear-niños']);
-  }
-
-  ngOnInit() {
-    this.ajustarFilas();
+  ngOnInit(): void {
+    this.dtOptions = {
+      ajax: 'data/data.json',
+      columns: [{
+        title: 'ID',
+        data: 'id'
+      }, {
+        title: 'First name',
+        data: 'firstName'
+      }, {
+        title: 'Last name',
+        data: 'lastName'
+      }]
+    };
   }
 }

@@ -21,9 +21,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DataTablesModule } from 'angular-datatables';
 
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
+
   imports: [
     BrowserAnimationsModule,
     FormsModule,
@@ -41,6 +44,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    DataTablesModule, BrowserModule,
+
+    // TableListComponent,
 
   ],
   declarations: [
@@ -48,7 +54,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AdminLayoutComponent,
     LoginComponent,
     ButtonComponent,
-    NinosCrearComponent
+    NinosCrearComponent,
+
 
   ],
   providers: [],
