@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UsuarioModel, dataUsuarioService} from 'app/models/usuario.model';
 import { UsuariosService } from 'app/services/usuarios.service';
-import { BehaviorSubject } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
@@ -13,44 +13,26 @@ export class UpgradeComponent implements OnInit, OnDestroy {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  usuarios:any[]=[];
-  persons=[
-    {
-      id:1,
-      firstName:'Elvis',
-      lastName:'Rosa'
-    },
-    {
-      id:2,
-      firstName:'Vera',
-      lastName:'Rosa'
-    },
-    {
-      id:3,
-      firstName:'Carlos',
-      lastName:'Rosa'
-    }
-  ]
+  usuarios: UsuarioModel[] = [];
+  constructor(private usuarioService: UsuariosService,
+    private dataUsuarioService:dataUsuarioService
+  ) { }
 
-
-  constructor(private usuarioService:UsuariosService) { }
+  //    private dataUsuario:dataUsuarioService
 
   ngOnInit() {
-    // this.dtOptions = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 2
-    // };
-    // this.dtTrigger.next('');
     this.usuarioService.traerUsuarios().subscribe(
       {
-        next: (resp:any)=>{
+        next: (resp: any) => {
           this.usuarios = [...resp]
           console.log(resp)
         }
       }
     )
+  }
 
-
+  enviarDatosUusario(usuario: UsuarioModel) {
+    this.dataUsuarioService.enviarUsuario = usuario;
   }
 
   ngOnDestroy(): void {

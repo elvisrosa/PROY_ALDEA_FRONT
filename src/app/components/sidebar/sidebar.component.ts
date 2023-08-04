@@ -15,8 +15,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/crear-niños', title: 'Crear Niño',  icon: 'dashboard', class: '' , roles:['ADMIN', 'ADMINT']},
     { path: '/lista-niños', title: 'Niños',  icon:'content_paste', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
     { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
-    { path: '/perfil-usuario', title: 'Usuario - Crear',  icon:'person', class: '', roles:['ADMIN', 'ADMINT', 'TUTOR'] },
+    { path: '/perfil-usuario', title: 'Usuario - Crear',  icon:'person', class: '', roles:['ADMIN', 'ADMINT'] },
     { path: '/permiso-tutores', title: 'Permiso Tutores',  icon:'unarchive', class: 'active-pro', roles:['ADMINT'] },
+    { path: '/visor-pdf', title: 'Visor de Pdfs',  icon:'unarchive', class: '', roles:['ADMINT', 'ADMIN']},
 
 ];
 

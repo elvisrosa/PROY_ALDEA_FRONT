@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './guards/login.guard';
+import * as path from 'path';
+import { VisorPdfsComponent } from './components/visor-pdfs/visor-pdfs.component';
 
 const routes: Routes = [
   {
@@ -25,12 +27,17 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate:[LoginGuard],
+    canActivate: [LoginGuard],
     component: AdminLayoutComponent,
     children: [{
       path: '',
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     }]
+  },
+  {
+    path: 'visor-pdf',
+    component: VisorPdfsComponent,
+    pathMatch: 'full'
   }
 ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NiñoService } from 'app/services/niño.service';
-import { NinoEntity } from 'app/models/niño.modelo';
+import { NinoEntity, dataNiñoService } from 'app/models/niño.modelo';
 import { MensajesService } from 'app/services/mensajes.service';
 import { CasaServiceService } from 'app/services/casa-service.service';
 import { Casa } from 'app/models/casa.modelo';
@@ -12,7 +12,15 @@ import { Casa } from 'app/models/casa.modelo';
   templateUrl: './ninos-crear.component.html',
   styleUrls: ['./ninos-crear.component.scss']
 })
+
 export class NinosCrearComponent implements OnInit {
+
+  constructor(private _formBuilder: FormBuilder,
+    private niñoService: NiñoService,
+    private mensajes: MensajesService,
+    private casaService: CasaServiceService,
+    private dataNiñoService?: dataNiñoService) { }
+
 
   casas: Casa[] = [];
   firstFormGroup: FormGroup;
@@ -20,6 +28,7 @@ export class NinosCrearComponent implements OnInit {
   formControlPadre: FormGroup;
   formControlMadre: FormGroup;
   casaForm: FormGroup;
+  public niño:NinoEntity = this.dataNiñoService.getNiño;
 
 
 
@@ -31,56 +40,53 @@ export class NinosCrearComponent implements OnInit {
           console.log('Metodo', this.casas)
         }
       }
-    )
-    this.initFor();
+      )
+      this.initFor();
+      this.getNiñoByCedula();
 
   }
 
   initFor() {
     this.firstFormGroup = this._formBuilder.group({
-      cedula: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      nombre: ['', [Validators.required]],
-      apellido: ['', [Validators.required]],
-      fechaNacN: ['', [Validators.required]],
-      lugnac: ['', [Validators.required]],
-      edad: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      sexo: ['', [Validators.required]]
+      cedula: [this.niño?.cedula || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      nombre: [this.niño?.nombres || '', [Validators.required]],
+      apellido: [this.niño?.apellidos || '', [Validators.required]],
+      fechaNacN: [this.niño?.fechaNacimiento || '', [Validators.required]],
+      lugnac: [this.niño?.lugarNacimiento || '', [Validators.required]],
+      edad: [this.niño?.edad || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      sexo: [this.niño?.sexo, [Validators.required]]
     });
     this.secondFormGroup = this._formBuilder.group({
-      fechaPa: ['', Validators.required],
-      descripcionpadrino: ['', Validators.required],
-      matromoniopadres: ['', Validators.required]
+      fechaPa: [this.niño?.bautizo.fecha || '', Validators.required],
+      descripcionpadrino: [this.niño?.bautizo.descripcionPadrino||'', Validators.required],
+      matromoniopadres: [this.niño?.bautizo.matrimoniosPadres||'', Validators.required]
     });
 
     this.casaForm = this._formBuilder.group({
-      casaControl: ['', Validators.required]
+      casaControl: [this.niño?.casa.idCasa || '', Validators.required]
     });
 
     this.formControlPadre = this._formBuilder.group({
-      cedula: ['', Validators.required],
-      nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
-      fechaPaNaci: ['', Validators.required],
-      edad: ['', Validators.required],
-      telefono: ['', Validators.required]
+      cedula: [this.niño?.padre.cedula || '', Validators.required],
+      nombres: [this.niño?.padre.nombre || '', Validators.required],
+      apellidos: [this.niño?.padre.apellidos || '', Validators.required],
+      fechaPaNaci: [this.niño?.padre.fechaNacimiento || '', Validators.required],
+      edad: [this.niño?.padre.edad || '', Validators.required],
+      telefono: [this.niño?.padre.telefono || '', Validators.required]
     });
 
     this.formControlMadre = this._formBuilder.group({
-      cedulam: ['', Validators.required],
-      nombresm: ['', Validators.required],
-      apellidosm: ['', Validators.required],
-      fechaPaNacim: ['', Validators.required],
-      edadm: ['', Validators.required],
-      telefonom: ['', Validators.required]
+      cedulam: [this.niño?.madre.cedula || '', Validators.required],
+      nombresm: [this.niño?.madre.cedula || '', Validators.required],
+      apellidosm: [this.niño?.madre.cedula || '', Validators.required],
+      fechaPaNacim: [this.niño?.madre.cedula || '', Validators.required],
+      edadm: [this.niño?.madre.cedula || '', Validators.required],
+      telefonom: [this.niño?.madre.cedula || '', Validators.required]
     });
 
   }
   isLinear = false;
 
-  constructor(private _formBuilder: FormBuilder,
-    private niñoService: NiñoService,
-    private mensajes: MensajesService,
-    private casaService: CasaServiceService) { }
 
   crear() {
     const datosNiño: NinoEntity = this.obtenerDatosNiño();
@@ -139,6 +145,15 @@ export class NinosCrearComponent implements OnInit {
     };
 
     return datosNiño;
+  }
+
+  getNiñoByCedula() {
+    if(this.niño.cedula){
+      this.firstFormGroup.get('cedula').disable();
+    }
+    // this.firstFormGroup.patchValue({
+    //   cedula: datos.cedula
+    // })
   }
 
   limpiarCampos() {

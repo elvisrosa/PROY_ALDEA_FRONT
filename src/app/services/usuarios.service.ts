@@ -18,4 +18,17 @@ export class UsuariosService {
   crearUsuario(usuario: UsuarioModel) {
     return this.http.post<UsuarioModel>(`${this.url}/user/crear`, usuario);
   }
+
+  eliminarUaurio(username:String){
+    return this.http.delete(`${this.url}/user/${username}`);
+  }
+
+  asignarTutorAcasa(idTutor:number, idCasa:number){
+    return this.http.put<any>(`${this.url}/tutor/${idTutor}/casa/${idCasa}`, {});
+  }
+
+ 
 }
+
+
+

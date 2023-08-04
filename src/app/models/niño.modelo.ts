@@ -7,14 +7,14 @@ export class NinoEntity {
     edad: number;
     sexo: string;
     ausente: boolean;
-    bautizo: Bautismo;
+    bautizo: Bautizo;
     casa: Casa;
     padre: Padre;
     madre: Madre;
     estudios: Estudios[];
 
     constructor() {
-        this.bautizo = new Bautismo();
+        this.bautizo = new Bautizo();
         this.casa = new Casa();
         this.padre = new Padre();
         this.madre = new Madre();
@@ -22,12 +22,24 @@ export class NinoEntity {
     }
 }
 
+export class dataNiñoService {
+    private datosniño: NinoEntity = new NinoEntity();
+
+    get getNiño(): NinoEntity {
+        return this.datosniño;
+    }
+
+    set setNiño(datos: NinoEntity) {
+        this.datosniño = datos;
+    }
+}
 
 
-class Bautismo {
-    fecha: Date;
-    descripcionPadrino: string;
-    matrimoniosPadres: string;
+export class Bautizo {
+    idBautismo?: number
+    fecha: string
+    descripcionPadrino: string
+    matrimoniosPadres: string
 }
 
 class Casa {

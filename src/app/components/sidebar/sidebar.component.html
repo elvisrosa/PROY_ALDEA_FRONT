@@ -1,13 +1,16 @@
+
 <div class="logo">
-    <a href="https://aldeacristorey.org/" class="simple-text">
+    <a class="simple-text">
         <div class="logo-img">
-            <img src="../../../assets/img/logo.png" style="width: 70px; height: auto;" />
+            <img src="../../../assets/img/logo.png" style="width: 165px; height: auto;" />
         </div>
     </a>
 </div>
 
-<div class="sidebar-wrapper">
-    <div *ngIf="isMobileMenu()">
+<div class="sidebar-wrapper" style="margin-top: 28px;">
+
+    
+    <!-- <div *ngIf="isMobileMenu()">
         <form class="navbar-form">
             <span class="bmd-form-group">
                 <div class="input-group no-border">
@@ -54,7 +57,7 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
                 <a class="nav-link" [routerLink]="[menuItem.path]">

@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { BitacoraCasaComponent } from './bitacora-casa/bitacora-casa.component';
+import { VisorPdfsComponent } from './visor-pdfs/visor-pdfs.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    BitacoraCasaComponent,
+    VisorPdfsComponent
   ],
   exports: [
     FooterComponent,

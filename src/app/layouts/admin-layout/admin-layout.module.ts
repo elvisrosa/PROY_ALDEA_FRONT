@@ -37,7 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   declarations: [
     DashboardComponent,
     UserProfileComponent,
-    TableListComponent,
+    //TableListComponent,
     NotificationsComponent,
     UpgradeComponent,
   ]

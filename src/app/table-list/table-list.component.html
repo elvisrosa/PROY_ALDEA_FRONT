@@ -2,54 +2,78 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
+                <!-- <div class="card"> -->
+                <!-- <div class="card-header card-header-danger">
                         <h4 class="card-title ">Datos de niños</h4>
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class="COLOR">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        Cedula
-                                    </th>
-                                    <th>
-                                        Nombres
-                                    </th>
-                                    <th>
-                                        Apellidos
-                                    </th>
-                                    <th>
-                                        Fecha Nacimiento
-                                    </th>
-                                    <th>Lugar de Nacimiento </th>
-                                    <th>Edad </th>
-                                    <th>Sexo </th>
-                                    <th>Telefono </th>
-
+                <!-- </div> -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                            <ng-container *ngIf="ninos.length>1; else noDatos">
+                                <thead>
+                                    <tr>
+                                        <th>Cedula</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Fecha Nac</th>
+                                        <th>Lugar Nac</th>
+                                        <th>Edad</th>
+                                        <th>Sexo</th>
+                                        <th>Estado</th>
+                                        <th>Bautizo</th>
+                                        <th>Casa</th>
+                                        <th>Padre</th>
+                                        <th>Madre</th>
+                                        <th>Estudios</th>
+                                        <th style="color:brown">Editar</th>
+                                        <th style="color:brown">Eliminar</th>
+                                        <th style="color:brown">Ver todo</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
+                                    <tr *ngFor="let n of ninos">
+                                        <td>{{n.cedula}}</td>
+                                        <td>{{n.nombres}}</td>
+                                        <td>{{n.apellidos}}</td>
+                                        <td>{{n.fechaNacimiento}}</td>
+                                        <td>{{n.lugarNacimiento}}</td>
+                                        <td>{{n.edad}}</td>
+                                        <td>{{n.sexo}}</td>
+                                        <td>{{n.ausente}}</td>
+                                        <td>{{n.bautizo}}</td>
+                                        <td>{{n.casa}}</td>
+                                        <td>{{n.padre}}</td>
+                                        <td>{{n.madre}}</td>
+                                        <td>{{n.estudios}}</td>
+                                        <td class="text-center">
+                                            <button>
+                                                Editar
+                                            </button>
                                         </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
+                                        <td class="text-center">
+                                            <button (click)="deleteByCedula(n.cedula)">
+                                                Eliminar
+                                            </button>
                                         </td>
-
+                                        <td class="text-center">
+                                            <button (click)="getAllDataById(n)">
+                                                <i class="fa fa-question" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
+                            </ng-container>
+                        </table>
+
+                        <ng-template #noDatos>
+                            <span>TABLA VACIA</span>
+                        </ng-template>
+
+
                     </div>
                 </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>

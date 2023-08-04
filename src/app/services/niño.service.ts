@@ -17,4 +17,12 @@ export class NiñoService {
     return this.http.post<NinoEntity>(`${this.url}/niños/crear`, niño);
   }
 
+  getAll(){
+    return this.http.get<NinoEntity>(`${this.url}/niños`);
+  }
+
+  deleteByCedula(cedula:string){
+    return this.http.delete(`${this.url}/eliminar/${cedula}`);
+  }
+
 }

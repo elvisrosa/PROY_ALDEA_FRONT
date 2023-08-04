@@ -21,6 +21,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { dataUsuarioService } from './models/usuario.model';
+import { TableListComponent } from './table-list/table-list.component';
+import { DataTablesModule } from 'angular-datatables';
+import { dataNiñoService } from './models/niño.modelo';
 
 
 @NgModule({
@@ -40,7 +44,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    DataTablesModule
     
 
   ],
@@ -50,10 +55,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     LoginComponent,
     ButtonComponent,
     NinosCrearComponent,
+    TableListComponent
     //UpgradeComponent
 
   ],
-  providers: [],
+  providers: [dataUsuarioService,dataNiñoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
