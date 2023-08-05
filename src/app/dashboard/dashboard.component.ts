@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     private auth: AuthService) { }
 
   casas: Casa[] = [];
+  ver:boolean=false;
 
   roles: String[] = [];
   startAnimationForLineChart(chart) {

@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                            <ng-container *ngIf="ninos.length>1; else noDatos">
+                            <ng-container *ngIf="ninos.length>=1; else noDatos">
                                 <thead>
                                     <tr>
                                         <th>Cedula</th>
@@ -22,12 +22,10 @@
                                         <th>Sexo</th>
                                         <th>Estado</th>
                                         <th>Bautizo</th>
-                                        <th>Casa</th>
+                                        <th># casa</th>
                                         <th>Padre</th>
                                         <th>Madre</th>
                                         <th>Estudios</th>
-                                        <th style="color:brown">Editar</th>
-                                        <th style="color:brown">Eliminar</th>
                                         <th style="color:brown">Ver todo</th>
                                     </tr>
                                 </thead>
@@ -41,21 +39,12 @@
                                         <td>{{n.edad}}</td>
                                         <td>{{n.sexo}}</td>
                                         <td>{{n.ausente}}</td>
-                                        <td>{{n.bautizo}}</td>
-                                        <td>{{n.casa}}</td>
-                                        <td>{{n.padre}}</td>
-                                        <td>{{n.madre}}</td>
-                                        <td>{{n.estudios}}</td>
-                                        <td class="text-center">
-                                            <button>
-                                                Editar
-                                            </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <button (click)="deleteByCedula(n.cedula)">
-                                                Eliminar
-                                            </button>
-                                        </td>
+                                        <td><a href="">{{n.bautizo?.idBautismo}}</a></td>
+                                        <td><a href="">{{n.casa?.numeroCasa}}</a></td>
+                                        <td><a href="">{{n.padre?.cedula}}</a></td>
+                                        <td><a href="">{{n.madre?.cedula}}</a></td>
+                                        <td><a href="">{{n.estudios?.idEstudio}}</a></td>
+                                                                             
                                         <td class="text-center">
                                             <button (click)="getAllDataById(n)">
                                                 <i class="fa fa-question" aria-hidden="true"></i>

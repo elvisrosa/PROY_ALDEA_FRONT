@@ -4,8 +4,6 @@ import { DataTableDirective } from 'angular-datatables';
 import { NinoEntity, dataNiñoService } from 'app/models/niño.modelo';
 import { MensajesService } from 'app/services/mensajes.service';
 import { NiñoService } from 'app/services/niño.service';
-import { url } from 'inspector';
-import { get } from 'jquery';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -25,7 +23,6 @@ export class TableListComponent implements OnInit, OnDestroy{
 
   constructor(private router: Router,
     private niñoS:NiñoService,
-    private msj:MensajesService,
     private dataNiño:dataNiñoService) { }
 
 
@@ -71,19 +68,7 @@ export class TableListComponent implements OnInit, OnDestroy{
     )
   }
 
-  deleteByCedula(cedula:string){
-    const alert = window.confirm('¿Seguro deseas eliminar este registro? ');
-    if(alert){
-      this.niñoS.deleteByCedula(cedula).subscribe(
-        {
-          next:()=>{this.msj.mostrarMensaje('Mensaje del sistema', 'Registro eliminado con exito', 2000)}
-        }
-      )
-    }else{
-      console.log('cancelado')
-    }
-    
-  }
+
 
 
   getAllDataById(data:any){

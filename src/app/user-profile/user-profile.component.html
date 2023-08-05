@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-md-5">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Company (disabled)" disabled formControlName="des">
+                      <input matInput placeholder="ALDEA-CRSITO-REY" disabled>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
@@ -146,7 +146,7 @@
                   </div>
                 </div>
                 <button mat-raised-button type="submit" (click)="crearUsuario()" [disabled]="!form.valid"
-                  class="btn btn-danger pull-right">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</button>
+                  class="btn btn-success pull-right">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</button>
 
                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="eliminarUsuario()"
                   *ngIf="usuario.username">Eliminar</button>

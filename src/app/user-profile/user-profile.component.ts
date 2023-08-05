@@ -61,6 +61,9 @@ export class UserProfileComponent implements OnInit {
       habilitado: [this.usuario.disabled || '', Validators.required],
       casaControl: ['', Validators.required],
     });
+    if(this.usuario.username){
+      this.form.get('username').disable();
+    }
   }
 
 

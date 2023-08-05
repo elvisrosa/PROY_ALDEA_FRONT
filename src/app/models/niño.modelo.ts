@@ -36,7 +36,7 @@ export class dataNiñoService {
 
 
 export class Bautizo {
-    idBautismo?: number
+    idBautismo: number
     fecha: string
     descripcionPadrino: string
     matrimoniosPadres: string
@@ -74,7 +74,7 @@ class Madre {
 }
 
 class Estudios {
-    nino?: NinoEntity;
+    idEstudio:number;
     niveles?: string;
     nombreInstitucion?: string;
     sotenimiento?: string;

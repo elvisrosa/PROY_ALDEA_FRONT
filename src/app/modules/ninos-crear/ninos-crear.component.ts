@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NiñoService } from 'app/services/niño.service';
-import { NinoEntity, dataNiñoService } from 'app/models/niño.modelo';
 import { MensajesService } from 'app/services/mensajes.service';
 import { CasaServiceService } from 'app/services/casa-service.service';
 import { Casa } from 'app/models/casa.modelo';
+import { NinoEntity, dataNiñoService } from 'app/models/niño.modelo';
+import { NiñoService } from 'app/services/niño.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,10 +17,12 @@ import { Casa } from 'app/models/casa.modelo';
 export class NinosCrearComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
+    private router:Router,
     private niñoService: NiñoService,
     private mensajes: MensajesService,
     private casaService: CasaServiceService,
-    private dataNiñoService?: dataNiñoService) { }
+    private dataninoService?: dataNiñoService,
+    ) { }
 
 
   casas: Casa[] = [];
@@ -28,7 +31,7 @@ export class NinosCrearComponent implements OnInit {
   formControlPadre: FormGroup;
   formControlMadre: FormGroup;
   casaForm: FormGroup;
-  public niño:NinoEntity = this.dataNiñoService.getNiño;
+  public nino: NinoEntity = this.dataninoService.getNiño;
 
 
 
@@ -40,62 +43,62 @@ export class NinosCrearComponent implements OnInit {
           console.log('Metodo', this.casas)
         }
       }
-      )
-      this.initFor();
-      this.getNiñoByCedula();
+    )
+    this.initFor();
 
   }
 
   initFor() {
     this.firstFormGroup = this._formBuilder.group({
-      cedula: [this.niño?.cedula || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      nombre: [this.niño?.nombres || '', [Validators.required]],
-      apellido: [this.niño?.apellidos || '', [Validators.required]],
-      fechaNacN: [this.niño?.fechaNacimiento || '', [Validators.required]],
-      lugnac: [this.niño?.lugarNacimiento || '', [Validators.required]],
-      edad: [this.niño?.edad || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      sexo: [this.niño?.sexo, [Validators.required]]
+      cedula: [this.nino?.cedula || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      nombre: [this.nino?.nombres || '', [Validators.required]],
+      apellido: [this.nino?.apellidos || '', [Validators.required]],
+      fechaNacN: [this.nino?.fechaNacimiento || '', [Validators.required]],
+      lugnac: [this.nino?.lugarNacimiento || '', [Validators.required]],
+      edad: [this.nino?.edad || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      sexo: [this.nino?.sexo, [Validators.required]]
     });
     this.secondFormGroup = this._formBuilder.group({
-      fechaPa: [this.niño?.bautizo.fecha || '', Validators.required],
-      descripcionpadrino: [this.niño?.bautizo.descripcionPadrino||'', Validators.required],
-      matromoniopadres: [this.niño?.bautizo.matrimoniosPadres||'', Validators.required]
+      fechaPa: [this.nino?.bautizo?.fecha || '', Validators.required],
+      descripcionpadrino: [this.nino?.bautizo?.descripcionPadrino || '', Validators.required],
+      matromoniopadres: [this.nino?.bautizo?.matrimoniosPadres || '', Validators.required]
     });
 
     this.casaForm = this._formBuilder.group({
-      casaControl: [this.niño?.casa.idCasa || '', Validators.required]
+      casaControl: [this.nino?.casa?.idCasa || '', Validators.required]
     });
 
     this.formControlPadre = this._formBuilder.group({
-      cedula: [this.niño?.padre.cedula || '', Validators.required],
-      nombres: [this.niño?.padre.nombre || '', Validators.required],
-      apellidos: [this.niño?.padre.apellidos || '', Validators.required],
-      fechaPaNaci: [this.niño?.padre.fechaNacimiento || '', Validators.required],
-      edad: [this.niño?.padre.edad || '', Validators.required],
-      telefono: [this.niño?.padre.telefono || '', Validators.required]
+      cedula: [this.nino?.padre?.cedula || '', Validators.required],
+      nombres: [this.nino?.padre?.nombre || '', Validators.required],
+      apellidos: [this.nino?.padre?.apellidos || '', Validators.required],
+      fechaPaNaci: [this.nino?.padre?.fechaNacimiento || '', Validators.required],
+      edad: [this.nino?.padre?.edad || '', Validators.required],
+      telefono: [this.nino?.padre?.telefono || '', Validators.required]
     });
 
     this.formControlMadre = this._formBuilder.group({
-      cedulam: [this.niño?.madre.cedula || '', Validators.required],
-      nombresm: [this.niño?.madre.cedula || '', Validators.required],
-      apellidosm: [this.niño?.madre.cedula || '', Validators.required],
-      fechaPaNacim: [this.niño?.madre.cedula || '', Validators.required],
-      edadm: [this.niño?.madre.cedula || '', Validators.required],
-      telefonom: [this.niño?.madre.cedula || '', Validators.required]
+      cedulam: [this.nino?.madre?.cedula || '', Validators.required],
+      nombresm: [this.nino?.madre?.nombre || '', Validators.required],
+      apellidosm: [this.nino?.madre?.apellidos || '', Validators.required],
+      fechaPaNacim: [this.nino?.madre?.fechaNacimiento || '', Validators.required],
+      edadm: [this.nino?.madre?.edad || '', Validators.required],
+      telefonom: [this.nino?.madre?.telefono || '', Validators.required]
     });
 
+    this.getninoByCedula();
   }
   isLinear = false;
 
 
   crear() {
-    const datosNiño: NinoEntity = this.obtenerDatosNiño();
-    console.log('datosNiño', datosNiño)
-    this.niñoService.crearNino(datosNiño).subscribe(
+    const datosnino: NinoEntity = this.obtenerDatosnino();
+    console.log('datosnino', datosnino)
+    this.niñoService.crearNino(datosnino).subscribe(
       {
         next: resp => {
           if (resp != null) {
-            this.mensajes.mostrarMensaje('Informacion del sistema', 'Niño creado con exito', 2000);
+            this.mensajes.mostrarMensaje('Informacion del sistema', 'nino creado con exito', 2000);
             this.limpiarCampos();
           } else {
             this.mensajes.mostrarMensaje('Informacion del sistema', 'Registro no creado:', 2000)
@@ -104,11 +107,11 @@ export class NinosCrearComponent implements OnInit {
         error: error => this.mensajes.mostrarMensaje('Informacion del sistema', 'Registro no creado: '.concat(error), 2000)
       }
     );
-    console.log(this.obtenerDatosNiño());
+    console.log(this.obtenerDatosnino());
   }
 
-  obtenerDatosNiño(): NinoEntity {
-    const datosNiño: NinoEntity = {
+  obtenerDatosnino(): NinoEntity {
+    const datosnino: NinoEntity = {
       cedula: this.firstFormGroup.get('cedula').value,
       nombres: this.firstFormGroup.get('nombre').value,
       apellidos: this.firstFormGroup.get('apellido').value,
@@ -118,6 +121,7 @@ export class NinosCrearComponent implements OnInit {
       sexo: this.firstFormGroup.get('sexo').value,
       ausente: false,
       bautizo: {
+        idBautismo: this.nino.bautizo.idBautismo,
         fecha: this.secondFormGroup.get('fechaPa').value,
         descripcionPadrino: this.secondFormGroup.get('descripcionpadrino').value,
         matrimoniosPadres: this.secondFormGroup.get('matromoniopadres').value
@@ -144,16 +148,34 @@ export class NinosCrearComponent implements OnInit {
       estudios: []
     };
 
-    return datosNiño;
+    return datosnino;
   }
 
-  getNiñoByCedula() {
-    if(this.niño.cedula){
+  getninoByCedula() {
+    if (this.nino.cedula) {
       this.firstFormGroup.get('cedula').disable();
+    } if (this.nino.madre.cedula) {
+      this.formControlMadre.get('cedulam').disable();
+    } if (this.nino.padre.cedula) {
+      this.formControlPadre.get('cedula').disable();
     }
     // this.firstFormGroup.patchValue({
     //   cedula: datos.cedula
     // })
+  }
+
+  deleteByCedula(cedula:string){
+    const alert = window.confirm('¿Seguro deseas eliminar este registro? ');
+    if(alert){
+      this.niñoService.deleteByCedula(cedula).subscribe(
+        {
+          next:()=>{this.mensajes.mostrarMensaje('Mensaje del sistema', 'Registro eliminado con exito', 2000), this.router.navigateByUrl('/lista-niños'), this.limpiarCampos()}
+        }
+      )
+    }else{
+      console.log('cancelado')
+    }
+    
   }
 
   limpiarCampos() {
