@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Casa } from 'app/models/casa.modelo';
 import { CasaServiceService } from 'app/services/casa-service.service';
 import { AuthService } from 'app/services/login.service';
 import * as Chartist from 'chartist';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
 

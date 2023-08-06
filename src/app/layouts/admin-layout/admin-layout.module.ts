@@ -17,6 +17,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { DataTablesModule } from 'angular-datatables';
 import { UpgradeComponent } from 'app/tutores-permisos/upgrade.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 @NgModule({
@@ -32,7 +36,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatTooltipModule,
     DataTablesModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule, 
+    MatIconModule,
+    MatMenuModule,
+    MatButtonToggleModule,
   ],
   declarations: [
     DashboardComponent,

@@ -1,6 +1,6 @@
 <div class="main-content">
-    <div class="container-fluid">
-
+    <div class="container">
+        <small>Vista general de los cursos</small>
         <div class="row">
             <ng-container *ngIf="casas.length>0; else noContent">
                 <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let car of casas">
@@ -19,18 +19,40 @@
                                 <i class="material-icons text-danger">warning</i>
                                 <a href="javascript:void(0)">Get More Space...</a>
                             </div>
+
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                  <mat-icon>dialpad</mat-icon>
+                                  <span>Redial</span>
+                                </button>
+                                <button mat-menu-item disabled>
+                                  <mat-icon>voicemail</mat-icon>
+                                  <span>Check voice mail</span>
+                                </button>
+                                <button mat-menu-item>
+                                  <mat-icon>notifications_off</mat-icon>
+                                  <span>Disable alerts</span>
+                                </button>
+                              </mat-menu>
+
                         </div>
                     </div>
                 </div>
             </ng-container>
+
+            
 
             <ng-template #noContent>
                 Aun no tienes ninguna casa asignada, o tu casa esta en estado incativo!
                 Comunicate con usuario ADMINISTRADOR
             </ng-template>
         </div>
+          
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4">
                 <div class="card card-chart">
                     <div class="card-header card-header-success">
@@ -51,7 +73,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

@@ -145,11 +145,18 @@
 
                   </div>
                 </div>
-                <button mat-raised-button type="submit" (click)="crearUsuario()" [disabled]="!form.valid"
+                <!-- <button mat-raised-button type="submit" (click)="crearUsuario()" [disabled]="!form.valid"
                   class="btn btn-success pull-right">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</button>
 
                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="eliminarUsuario()"
-                  *ngIf="usuario.username">Eliminar</button>
+                  *ngIf="usuario.username">Eliminar</button> -->
+
+                  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
+                    <mat-button-toggle type="button"  (click)="crearUsuario()" 
+                    class="btn-success">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</mat-button-toggle>
+                    <mat-button-toggle  type="button" class="btn-danger" (click)="eliminarUsuario()"
+                    *ngIf="usuario.username">Eliminar</mat-button-toggle>
+                  </mat-button-toggle-group>
 
                 <div class="clearfix"></div>
               </form>
