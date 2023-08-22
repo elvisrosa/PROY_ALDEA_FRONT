@@ -17,8 +17,8 @@ export class VisorPdfsComponent implements AfterViewInit {
 
     WebViewer({
       path: '../lib',
-      enableOfficeEditing:true, //para archivos de edicion
-      //initialDoc: '../assets/FICHA DE ACTIV 01-08.pdf'
+      //enableOfficeEditing:true, //para archivos de edicion
+      initialDoc: '../assets/FICHA DE ACTIV 01-08.pdf'
       //licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
     }, this.viewer.nativeElement).then((instance: any) => {
       this.wvInstance = instance;     

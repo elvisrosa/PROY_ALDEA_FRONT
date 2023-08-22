@@ -2,39 +2,50 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { NinoEntity, dataNiñoService } from 'app/models/niño.modelo';
-import { MensajesService } from 'app/services/mensajes.service';
 import { NiñoService } from 'app/services/niño.service';
-import { Subject } from 'rxjs';
+import { SharingServicesService } from 'app/services/sharing-services.service';
+import { Subject, Subscription, Observable } from 'rxjs';
+import { Role } from '../models/usuario.model';
 
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
   styleUrls: ['./table-list.component.css']
 })
-export class TableListComponent implements OnInit, OnDestroy{
+export class TableListComponent implements OnInit, OnDestroy {
 
 
-  @ViewChild('datatablechild') dtElement:DataTableDirective;
+  @ViewChild('datatablechild') dtElement: DataTableDirective;
   // dtOptions: DataTables.Settings = {};
-  dtOptions: any= {};
-  ninos: NinoEntity[] = [];
-  dtTrigger: Subject<any> = new Subject<any>();
+  public dtOptions: any = {};
+  public ninos: NinoEntity[] = [];
+  public dtTrigger: Subject<any> = new Subject<any>();
 
 
   constructor(private router: Router,
-    private niñoS:NiñoService,
-    private dataNiño:dataNiñoService) { }
+    private niñoS: NiñoService,
+    private dataNiño: dataNiñoService,
+    private sharingService: SharingServicesService) { }
 
 
+  public rol: String[] = [];
   ngOnInit(): void {
-    this.getAll();
+    this.sharingService.getDataSharing.subscribe({
+      next: resp=> this.rol = resp.roles
+    })
+    if(this.rol.includes('ADMIN') || this.rol.includes('ADMIN') && this.rol!==undefined){
+      this.getAll();
+    }else{
+      this.getAllByIdCasa();
+    }
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      search:true,
-      responsive:true,
+      search: true,
+      responsive: true,
+      retrieve:true,
       language: {
-        url:'./assets/languaje.json'
+        url: './assets/languaje.json'
       },
       buttons: [
         'colvis',
@@ -47,35 +58,49 @@ export class TableListComponent implements OnInit, OnDestroy{
           action: function (e, dt, node, config) {
             alert('Button activated');
           }
-        }     
+        }
       ]
     };
   }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
+    if (this.dtTrigger) {
+      this.dtTrigger.unsubscribe();
+    }
   }
 
-  getAll(){
+  getAll() {
     this.niñoS.getAll().subscribe(
       {
-        next: (resp:any)=>{
-          this.ninos= [...resp];
+        next: (resp: any) => {
+          this.ninos = [...resp];
           this.dtTrigger.next('');
         }
       }
     )
   }
 
+  getAllByIdCasa(){
+    this.sharingService.getDataListNiños.subscribe(
+      {
+        next: (resp: any[]) => {
+          console.log(resp)
+          this.ninos = [...resp];
+          this.dtTrigger.next('');
+        }
+      }
+    )
+  } 
 
 
 
-  getAllDataById(data:any){
-      this.dataNiño.setNiño = data;
-      this.router.navigateByUrl('/crear-niños');
+
+  getAllDataById(data: any) {
+    this.dataNiño.setNiño = data;
+    this.router.navigateByUrl('/crear-niños');
   }
 
-  
-  
+
+
 }

@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 import { Casa } from 'app/models/casa.modelo';
 import { CasaServiceService } from 'app/services/casa-service.service';
 import { AuthService } from 'app/services/login.service';
 import * as Chartist from 'chartist';
+import { event } from 'jquery';
+import { Role } from '../models/usuario.model';
+import { SharingServicesService } from 'app/services/sharing-services.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +19,15 @@ import * as Chartist from 'chartist';
 export class DashboardComponent implements OnInit {
 
   constructor(private casaService: CasaServiceService,
-    private auth: AuthService) { }
+    private $sharingS: SharingServicesService,
+    private _formBuilder:FormBuilder,
+    private router:Router) { }
+
+  showCreateHouse: boolean = false;
+  formhouse:FormGroup;
 
   casas: Casa[] = [];
-  ver:boolean=false;
+  ver: boolean = false;
 
   roles: String[] = [];
   startAnimationForLineChart(chart) {
@@ -76,10 +86,15 @@ export class DashboardComponent implements OnInit {
 
     seq2 = 0;
   };
+  initForm():void{
+    this.formhouse = this._formBuilder.group({
+
+    });
+  }
   ngOnInit() {
-    this.auth.user$.subscribe(
+    this.$sharingS.getDataSharing.subscribe(
       {
-        next: (resp:any) => {
+        next: (resp: any) => {
           this.roles = resp.roles;
           if (resp.roles.includes("ADMINT") || resp.roles.includes("ADMIN")) {
             this.obtenerCasas();
@@ -106,9 +121,9 @@ export class DashboardComponent implements OnInit {
       chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
     }
 
-    var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+    //var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 
-    this.startAnimationForLineChart(dailySalesChart);
+    //this.startAnimationForLineChart(dailySalesChart);
 
 
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
@@ -169,6 +184,20 @@ export class DashboardComponent implements OnInit {
     // this.startAnimationForBarChart(websiteViewsChart);
   }
 
+  showCreateHouseM(){
+    this.showCreateHouse = !this.showCreateHouse;
+  }
+
+  habilitarDeshabilitar(casa_id:number){
+    this.casaService.cambiarEstadoCasa(casa_id).subscribe({
+      next: resp => {
+        console.log(resp);
+        this.router.navigate(['/principal'])
+      }
+    });
+    console.log(casa_id)
+  }
+
   obtenerCasas() {
     this.casaService.obetenerCasas().subscribe(
       {
@@ -180,10 +209,9 @@ export class DashboardComponent implements OnInit {
       }
     )
   }
-  id?: number=0;
+  id?: number = 0;
   traerCasaPorPerfilTutor() {
-    this.auth.user$.subscribe(
-      {
+    this.$sharingS.getDataSharing.subscribe(      {
         next: resp => {
           this.id = resp['tutor'].idTutora;
         }
@@ -192,14 +220,18 @@ export class DashboardComponent implements OnInit {
 
     this.casaService.obtenerCasaPorTutor(this.id).subscribe(
       {
-        next: (resp:any)=>{
-          this.casas = resp.filter(casa=>casa.estado===1)
+        next: (resp: any) => {
+          this.casas = resp.filter(casa => casa.estado === 1);
+          this.$sharingS.setCasaSharing = resp.filter(casa => casa.estado === 1) ;
           //this.casas = [...resp];
-          console.log(resp)
         }
       }
     )
 
+  }
+
+  traerAlumnosPorCasa(idCasa:number){
+    
   }
 
 }

@@ -50,7 +50,7 @@ export class NinosCrearComponent implements OnInit {
 
   initFor() {
     this.firstFormGroup = this._formBuilder.group({
-      cedula: [this.nino?.cedula || '', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      cedula: [this.nino?.cedula || '', [Validators.required]],
       nombre: [this.nino?.nombres || '', [Validators.required]],
       apellido: [this.nino?.apellidos || '', [Validators.required]],
       fechaNacN: [this.nino?.fechaNacimiento || '', [Validators.required]],
@@ -91,7 +91,7 @@ export class NinosCrearComponent implements OnInit {
   isLinear = false;
 
 
-  crear() {
+  public crear() {
     const datosnino: NinoEntity = this.obtenerDatosnino();
     console.log('datosnino', datosnino)
     this.niñoService.crearNino(datosnino).subscribe(
@@ -110,7 +110,7 @@ export class NinosCrearComponent implements OnInit {
     console.log(this.obtenerDatosnino());
   }
 
-  obtenerDatosnino(): NinoEntity {
+  public obtenerDatosnino(): NinoEntity {
     const datosnino: NinoEntity = {
       cedula: this.firstFormGroup.get('cedula').value,
       nombres: this.firstFormGroup.get('nombre').value,
@@ -151,7 +151,7 @@ export class NinosCrearComponent implements OnInit {
     return datosnino;
   }
 
-  getninoByCedula() {
+  public getninoByCedula() {
     if (this.nino.cedula) {
       this.firstFormGroup.get('cedula').disable();
     } if (this.nino.madre.cedula) {
@@ -164,7 +164,7 @@ export class NinosCrearComponent implements OnInit {
     // })
   }
 
-  deleteByCedula(cedula:string){
+  public deleteByCedula(cedula:string){
     const alert = window.confirm('¿Seguro deseas eliminar este registro? ');
     if(alert){
       this.niñoService.deleteByCedula(cedula).subscribe(
@@ -178,7 +178,7 @@ export class NinosCrearComponent implements OnInit {
     
   }
 
-  limpiarCampos() {
+  private limpiarCampos() {
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     this.formControlPadre.reset();

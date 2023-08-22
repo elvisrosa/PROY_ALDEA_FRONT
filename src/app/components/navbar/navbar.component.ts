@@ -4,6 +4,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/login.service';
 import { UsuarioModel } from '../../models/usuario.model';
+import { SharingServicesService } from 'app/services/sharing-services.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,17 +22,19 @@ export class NavbarComponent implements OnInit {
     constructor(location: Location,  
         private element: ElementRef, 
         private router: Router,
-        private auth:AuthService
+        private auth:AuthService,
+        private sharingS: SharingServicesService
         ) {
       this.location = location;
           this.sidebarVisible = false;
     }
 
     ngOnInit(){
-        this.auth.user$.subscribe( 
+        this.sharingS.getDataSharing.subscribe( 
             {
                 next: resp=>{
-                    this.usuario= resp['tutor'];
+                    console.log(resp)
+                    this.usuario= resp;
                 }
             }
         )

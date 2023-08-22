@@ -7,6 +7,7 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../tutores-permisos/upgrade.component';
 import { LoginGuard } from 'app/guards/login.guard';
 import { NinosCrearComponent } from 'app/modules/ninos-crear/ninos-crear.component';
+import { CasasComponent } from 'app/casas/casas.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -58,6 +59,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'lista-niños',     component: TableListComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'permiso-tutores',        component: UpgradeComponent },
+    { path: 'casas',        component: CasasComponent },
     {
         path: 'crear-niños',
         component: NinosCrearComponent

@@ -1,8 +1,8 @@
 export class Casa {
-    idCasa:number;
-    telefono:string;
-    direccion:string;
+    idCasa?:number;
+    direccion?:string;
     img:string;
     estado:number;
     nombrecasa:string;
+    numerocasa:number;
 }

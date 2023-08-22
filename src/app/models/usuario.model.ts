@@ -1,6 +1,7 @@
 export class UsuarioModel {
     username?: string;
-    nombre?: string;
+    nombres?: string;
+    apellidos?:string;
     locked?: boolean;
     disabled?: boolean;
     password?: string;

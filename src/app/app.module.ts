@@ -25,6 +25,7 @@ import { dataUsuarioService } from './models/usuario.model';
 import { TableListComponent } from './table-list/table-list.component';
 import { DataTablesModule } from 'angular-datatables';
 import { dataNiñoService } from './models/niño.modelo';
+import { CasasComponent } from './casas/casas.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { dataNiñoService } from './models/niño.modelo';
     LoginComponent,
     ButtonComponent,
     NinosCrearComponent,
-    TableListComponent
+    TableListComponent,
+    CasasComponent
     //UpgradeComponent
 
   ],

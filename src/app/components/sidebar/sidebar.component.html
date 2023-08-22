@@ -57,30 +57,33 @@
             </li>
         </ul>
     </div> -->
-    <ul class="nav">
+    <ul class="nav flex-column">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             <a class="nav-link" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>
             </a>
         </li>
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="nav-item">
-            <!-- This is the tree node template for leaf nodes -->
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-                <!-- use a disabled button to provide padding for tree leaf -->
-                <button mat-icon-button disabled></button>
-                {{node.name}}
-            </mat-tree-node>
-            <!-- This is the tree node template for expandable nodes -->
-            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-                    <mat-icon class="mat-icon-rtl-mirror">
-                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                    </mat-icon>
-                </button>
-                {{node.name}}
-            </mat-tree-node>
-        </mat-tree>
+
+        <li *ngIf="roles.includes('TUTOR')">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="nav-item"
+                *ngIf="roles.includes('TUTOR') || roles.includes('ADMINT')">
+                <!-- This is the tree node template for leaf nodes -->
+                <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                    <!-- <button mat-icon-button disabled></button> -->
+                    <button (click)="findByIdHouse(node)">{{node.name}}</button>
+                </mat-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                        <mat-icon class="mat-icon-rtl-mirror">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                    <a>{{node.name}}</a>
+                </mat-tree-node>
+            </mat-tree>
+        </li>
     </ul>
 
 

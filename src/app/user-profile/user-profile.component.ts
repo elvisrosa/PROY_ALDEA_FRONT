@@ -111,7 +111,8 @@ export class UserProfileComponent implements OnInit {
       username: this.form.get('username').value,
       correo: this.form.get('correo').value,
       password: this.form.get('contraseña').value,
-      nombre: this.form.get('nombres').value,
+      nombres: this.form.get('nombres').value,
+      apellidos: this.form.get('apellidos').value,
       disabled: false,
       locked: false,
       tutor: {

@@ -24,4 +24,8 @@ export class NiñoService {
     return this.http.delete(`${this.url}/eliminar/${cedula}`);
   }
 
+  findByIdCasa(id_casa:number){
+    return this.http.get<NinoEntity[]>(`${this.url}/niños/listarporcasa/${id_casa}`);
+  }
+
 }
