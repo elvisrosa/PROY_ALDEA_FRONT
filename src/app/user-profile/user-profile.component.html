@@ -1,7 +1,8 @@
+<h3 class="perfil_css">Usuario - Crear</h3>
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 cuadro_perfil">
         <ng-container *ngIf="mostrarCrearEditar else asignarACasa">
           <div class="card">
             <div class="card-header card-header-danger">
@@ -156,12 +157,12 @@
                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="eliminarUsuario()"
                   *ngIf="usuario.username">Eliminar</button> -->
 
-                  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
-                    <mat-button-toggle type="button"  (click)="crearUsuario()" 
-                    class="btn-success">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</mat-button-toggle>
-                    <mat-button-toggle  type="button" class="btn-danger" (click)="eliminarUsuario()"
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
+                  <mat-button-toggle type="button" (click)="crearUsuario()" class="btn-success">{{(usuario.username) ?
+                    'Editar': 'Crear Usuario'}}</mat-button-toggle>
+                  <mat-button-toggle type="button" class="btn-danger" (click)="eliminarUsuario()"
                     *ngIf="usuario.username">Eliminar</mat-button-toggle>
-                  </mat-button-toggle-group>
+                </mat-button-toggle-group>
 
                 <div class="clearfix"></div>
               </form>
@@ -170,19 +171,19 @@
         </ng-container>
 
         <ng-template #asignarACasa>
-            <h3 class="col-md-12">El usuario que vas a agregar la casa es el Siguiente: {{nombre_tutora}} con cedula
-              {{cedula_tutora}}</h3>
-            <div class="col-md-12">
-              <span>ELIGE LA CASA A LA QUE ESTE TUTOR ESTARA ENCARGADO</span>
-            </div>
-            <mat-form-field [formGroup]="form">
-              <mat-label>Casas</mat-label>
-              <mat-select formControlName="casaControl">
-                <mat-option *ngFor="let c of casas" [value]="c.idCasa">{{c.nombrecasa}} {{c.idCasa}} </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid"
-              class="btn btn-danger pull-right" (click)="asignarTutorCasa()">Asignar</button>
+          <h3 class="col-md-12">El usuario que vas a agregar la casa es el Siguiente: {{nombre_tutora}} con cedula
+            {{cedula_tutora}}</h3>
+          <div class="col-md-12">
+            <span>ELIGE LA CASA A LA QUE ESTE TUTOR ESTARA ENCARGADO</span>
+          </div>
+          <mat-form-field [formGroup]="form">
+            <mat-label>Casas</mat-label>
+            <mat-select formControlName="casaControl">
+              <mat-option *ngFor="let c of casas" [value]="c.idCasa">{{c.nombrecasa}} {{c.idCasa}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid"
+            class="btn btn-danger pull-right" (click)="asignarTutorCasa()">Asignar</button>
         </ng-template>
 
 

@@ -1,7 +1,7 @@
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   <!-- {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}  -->
 </button>
-
+<h3 class="crear_ninos">Crear Niño</h3>
 
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
@@ -197,7 +197,8 @@
       <button mat-button matStepperNext class="btn btn-success btn-round" (click)="crear()">{{(nino.cedula) ? 'Editar':
         'Guardar'}}</button>
       <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-      <button *ngIf="nino.cedula" mat-button matStepperNext class="btn btn-danger btn-round"  (click)="deleteByCedula(nino.cedula)">
+      <button *ngIf="nino.cedula" mat-button matStepperNext class="btn btn-danger btn-round"
+        (click)="deleteByCedula(nino.cedula)">
         Eliminar
       </button>
     </div>

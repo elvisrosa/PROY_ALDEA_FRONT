@@ -1,34 +1,36 @@
-  <div class="main-content">
+<div class="main-content">
+    <h3 class="casas">Casas</h3>
     <div class="container-fluid">
-            <form [formGroup]="formCasa" (ngSubmit)="createCasa()">
-                <div class="row">
-                  <div class="col">
+        <form [formGroup]="formCasa" (ngSubmit)="createCasa()">
+            <div class="row">
+                <div class="col">
                     <input type="text" required class="form-control" placeholder="Nombre" formControlName="nombreecasa">
-                  </div>
-                  <div class="col">
+                </div>
+                <div class="col">
                     <input type="number" class="form-control" placeholder="Número" formControlName="numerocasa">
-                  </div>
-                  <div class="col">
+                </div>
+                <div class="col">
                     <mat-form-field>
                         <mat-label>estado</mat-label>
                         <mat-select formControlName="estado" required [value]="this.casa?.estado">
-                          <mat-option value="1">Habilitar</mat-option>
-                          <mat-option value="0">Deshabilitar</mat-option>
+                            <mat-option value="1">Habilitar</mat-option>
+                            <mat-option value="0">Deshabilitar</mat-option>
                         </mat-select>
-                      </mat-form-field>
-                  </div>
-                  <div class="col">
-                    <input type="text" required class="form-control" placeholder="Dirección" formControlName="direccion">
-                  </div>
-                  <div class="col">
-                    <input type="text" required class="form-control" placeholder="Imagen" formControlName="img">
-                  </div>
-                  <div class="col">
-                    <button type="submit" class="form-control btn btn-success">Guardar</button>
-                  </div>
-                  
+                    </mat-form-field>
                 </div>
-              </form>
+                <div class="col">
+                    <input type="text" required class="form-control" placeholder="Dirección"
+                        formControlName="direccion">
+                </div>
+                <div class="col">
+                    <input type="text" required class="form-control" placeholder="Imagen" formControlName="img">
+                </div>
+                <div class="col">
+                    <button type="submit" class="form-control btn btn-success">Guardar</button>
+                </div>
+
+            </div>
+        </form>
         <div class="row">
             <div class="col-md-12">
 
@@ -49,10 +51,12 @@
                                     <th class="text-center">
                                         Numero
                                     </th>
-                                    <th  matTooltip="Si el usaurio no tiene tutor es porque es ADMINISTRADOR"  aria-label="Button that displays a tooltip when focused or hovered over" class="text-center">                             
+                                    <th matTooltip="Si el usaurio no tiene tutor es porque es ADMINISTRADOR"
+                                        aria-label="Button that displays a tooltip when focused or hovered over"
+                                        class="text-center">
                                         Nombre
                                     </th>
-       
+
                                     <th class="text-center">
                                         Estado
                                     </th>
@@ -68,20 +72,21 @@
                                         <td><b>{{i+1}}</b></td>
                                         <td class="text-center">
                                             {{c.direccion}}
-                                        </td>                                        
+                                        </td>
                                         <td class="text-center">
                                             {{c.numerocasa}}
                                         </td>
                                         <td class="text-center">
                                             {{c.nombrecasa}}
-                                        </td>                                        
+                                        </td>
                                         <td class="text-center">
-                                            <i [class]="(c.estado===0) ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
+                                            <i
+                                                [class]="(c.estado===0) ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
                                         </td>
                                         <td class="text-center">
                                             Http://imagen.pnh
-                                        </td>                                        
-                                       
+                                        </td>
+
                                         <td class="text-center">
                                             <button (click)="verInfo(c)">
                                                 <i class="fa fa-question" aria-hidden="true"></i>

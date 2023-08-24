@@ -1,7 +1,8 @@
+<h3 class="tutor">Permisos Tutores</h3>
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12  cuadro_perfil">
 
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -21,10 +22,12 @@
                                     <th class="text-center">
                                         Roles
                                     </th>
-                                    <th  matTooltip="Si el usaurio no tiene tutor es porque es ADMINISTRADOR"  aria-label="Button that displays a tooltip when focused or hovered over" class="text-center">                             
+                                    <th matTooltip="Si el usaurio no tiene tutor es porque es ADMINISTRADOR"
+                                        aria-label="Button that displays a tooltip when focused or hovered over"
+                                        class="text-center">
                                         Tutor
                                     </th>
-       
+
                                     <th class="text-center">
                                         Bloqueado
                                     </th>
@@ -45,18 +48,20 @@
                                         <td class="text-center">
                                             <ul *ngFor="let cc of c.roles">
                                                 <li style="list-style: none;">{{cc.role}}</li>
-                                            </ul>                                         
+                                            </ul>
                                         </td>
                                         <td class="text-center">
                                             {{c.tutor?.idTutora}}
                                         </td>
                                         <td class="text-center">
-                                            <i [class]="c.locked ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
+                                            <i
+                                                [class]="c.locked ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
                                         </td>
                                         <!-- <td class="text-center"><i class="fa fa-check text-success"></i></td> -->
                                         <!-- {{c.locked}} -->
                                         <td class="text-center">
-                                            <i [class]="c.disabled ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
+                                            <i
+                                                [class]="c.disabled ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
                                         </td>
 
                                         <td class="text-center">

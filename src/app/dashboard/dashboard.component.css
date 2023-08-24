@@ -15,3 +15,7 @@
     width: calc(50% - 10px);
 
 }
+
+.cuadro_perfil {
+    margin-top: -70px;
+}

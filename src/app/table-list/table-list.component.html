@@ -1,5 +1,6 @@
+<h3 class="ninos_css">Datos Niños</h3>
 <div class="main-content">
-    <div class="container-fluid">
+    <div class="container-fluid cuadro_perfil">
         <div class="row">
             <div class="col-md-12">
                 <!-- <div class="card"> -->
@@ -22,11 +23,11 @@
                                         <th>Sexo</th>
                                         <th>Estado</th>
                                         <th>Bautizo</th>
-                                            <th># casa</th>
-                                            <th>Padre</th>
-                                            <th>Madre</th>
-                                            <th>Estudios</th>
-                                            <th style="color:brown">Ver todo</th>
+                                        <th># casa</th>
+                                        <th>Padre</th>
+                                        <th>Madre</th>
+                                        <th>Estudios</th>
+                                        <th style="color:brown">Ver todo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,7 +45,7 @@
                                         <td><a href="">{{n.padre?.cedula}}</a></td>
                                         <td><a href="">{{n.madre?.cedula}}</a></td>
                                         <td><a href="">{{n.estudios?.idEstudio}}</a></td>
-                                                                             
+
                                         <td class="text-center">
                                             <button (click)="getAllDataById(n)">
                                                 <i class="fa fa-question" aria-hidden="true"></i>

@@ -1,8 +1,20 @@
 .example-additional-selection {
-    opacity: 0.75;
-    font-size: 0.75em;
-  }
+  opacity: 0.75;
+  font-size: 0.75em;
+}
 
-  mat-button-toggle-group {
-    margin-left: 12px;
-  }
+mat-button-toggle-group {
+  margin-left: 12px;
+}
+
+.perfil_css {
+  margin-left: 50px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 80px;
+}
+
+.cuadro_perfil {
+  margin-top: -70px;
+}

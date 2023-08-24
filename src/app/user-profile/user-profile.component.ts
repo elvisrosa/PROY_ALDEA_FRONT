@@ -50,25 +50,25 @@ export class UserProfileComponent implements OnInit {
     this.form = this._build.group({
       username: [this.usuario.username, Validators.required],
       correo: [this.usuario.tutor?.correo || '', Validators.required],
-      nombres: [this.usuario.tutor?.nombre || '', Validators.required],
+      nombres: [this.usuario.tutor?.nombre || '',],
       contraseña: [this.usuario.password, Validators.required],
       roles: [this.toppings || '', [Validators.required]],
       //roles: this.rolesFormControl, // Asigna el FormControl creado a 'roles'
-      apellidos: [this.usuario.tutor?.apellido || '', Validators.required],
-      cedula: [this.usuario.tutor?.cedula || '', Validators.required],
+      apellidos: [this.usuario.tutor?.apellido || '',],
+      cedula: [this.usuario.tutor?.cedula || '',],
       telefono: [this.usuario.tutor?.telefono || '', Validators.required],
       bloqueado: [this.usuario.locked || '', Validators.required],
       habilitado: [this.usuario.disabled || '', Validators.required],
-      casaControl: ['', Validators.required],
+      casaControl: ['',],
     });
-    if(this.usuario.username){
+    if (this.usuario.username) {
       this.form.get('username').disable();
     }
   }
 
 
   crearUsuario() {
-    if(this.form.valid){   
+    if (this.form.valid) {
       this.usarioService.crearUsuario(this.traerDatos()).subscribe(
         {
           next: (resp) => {
@@ -83,12 +83,12 @@ export class UserProfileComponent implements OnInit {
             } else {
               this.msjS.mostrarMensaje('Usuario', 'Usuario no creado', 2000);
             }
-  
+
           },
           error: (error) => this.msjS.mostrarMensaje('Usuario', 'Error al crear el usuario '.concat(error), 2000)
         }
       )
-    }else{
+    } else {
       this.msjS.mostrarMensaje('Usuario', 'Formulario invalido', 2000)
     }
   }
@@ -148,8 +148,8 @@ export class UserProfileComponent implements OnInit {
     let id_casa = this.form.get('casaControl')?.value;
     this.usarioService.asignarTutorAcasa(this.id_tutor_creado, id_casa).subscribe(
       {
-        next: (resp) => {this.msjS.mostrarMensaje('Mensaje del sistema', 'Se agrego el usuario a la casa seleccioanda', 2000); this.form.get('casaControl').reset(); this.router.navigateByUrl('/perfil-usuario')},
-        error:(error)=>this.msjS.mostrarMensaje('Mensaje del sistema', 'Ocurrio al asignarle una casa: '.concat(error), 2000)
+        next: (resp) => { this.msjS.mostrarMensaje('Mensaje del sistema', 'Se agrego el usuario a la casa seleccioanda', 2000); this.form.get('casaControl').reset(); this.router.navigateByUrl('/perfil-usuario') },
+        error: (error) => this.msjS.mostrarMensaje('Mensaje del sistema', 'Ocurrio al asignarle una casa: '.concat(error), 2000)
       }
     )
   }

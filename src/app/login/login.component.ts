@@ -14,7 +14,7 @@ import { SharingServicesService } from 'app/services/sharing-services.service';
 })
 
 export class LoginComponent implements OnInit {
-  isSubmitting = false;  
+  isSubmitting = false;
   faPen = faPen;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
@@ -26,27 +26,27 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]]
   });
 
-  constructor(private router: Router, 
-    private fb: FormBuilder, 
+  constructor(private router: Router,
+    private fb: FormBuilder,
     private authService: AuthService,
-    private mensaje:MensajesService,
-    private token:ServiceTokenService,
+    private mensaje: MensajesService,
+    private token: ServiceTokenService,
     private sharingS: SharingServicesService
-    ) { }
-    
+  ) { }
+
   ngOnInit(): void {
     const usuario = this.sharingS.getDataSharing;
     //const usuario = this.authService.user$;
     const token = this.token.getToken();
-    if(usuario && token){
-      this.router.navigateByUrl('/principal');           
+    if (usuario && token) {
+      this.router.navigateByUrl('/principal');
     }
   }
-  
-  login() { 
+
+  login() {
     //this.router.navigateByUrl('/principal');           
     this.isSubmitting = true;
-    if(this.loginForm.valid){
+    if (this.loginForm.valid) {
       this.status = 'loading';
       this.authService.iniciarSesion(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe(
         {
@@ -54,20 +54,22 @@ export class LoginComponent implements OnInit {
             console.log(this.loginForm.get('username').value, this.loginForm.get('password').value);
 
             if (resp && resp.estado === false) {
-              this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);  
-              console.log("resp", resp)     
-            } else{    
-              this.status='succes';
-              this.router.navigateByUrl('/principal');           
+              this.mensaje.mostrarMensaje('Ups', resp.mensaje, 2500);
+              console.log("resp", resp)
+            } else {
+              this.status = 'succes';
+              this.router.navigateByUrl('/principal');
             }
           },
-          error: (error)=> {this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000), console.log("ERROR", error)
-          this.status='failed'}
+          error: (error) => {
+            this.mensaje.mostrarMensaje('Ups', 'Comunicate con soporte', 1000), console.log("ERROR", error)
+            this.status = 'failed'
+          }
         }
       )
-    }else{
-      this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);     
-      this.status='failed'
+    } else {
+      this.mensaje.mostrarMensaje('Mensaje del sistema', 'Campos vacios', 1500);
+      this.status = 'failed'
       //this.loginForm.markAllAsTouched();
     }
   }
