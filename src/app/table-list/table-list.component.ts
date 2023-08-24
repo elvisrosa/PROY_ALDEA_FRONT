@@ -85,16 +85,12 @@ export class TableListComponent implements OnInit, OnDestroy {
     this.sharingService.getDataListNiños.subscribe(
       {
         next: (resp: any[]) => {
-          console.log(resp)
           this.ninos = [...resp];
           this.dtTrigger.next('');
         }
       }
     )
   } 
-
-
-
 
   getAllDataById(data: any) {
     this.dataNiño.setNiño = data;

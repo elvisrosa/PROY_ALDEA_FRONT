@@ -22,7 +22,6 @@ export class SharingServicesService {
   }
 
   set setDataListNiños(data:NinoEntity[]){
-    console.log(data)
     this.sharingDataNiñosList.next(data);
   }
 

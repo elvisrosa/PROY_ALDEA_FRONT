@@ -42,11 +42,22 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-6">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Contraseña" type="text" formControlName="contraseña">
-                    </mat-form-field>
-                  </div>
+                    <div class="example-container">
+                      <mat-form-field>
+                      <input matInput placeholder="Ingresa la contraseña" [type]="hide ? 'password' : 'text'" formControlName="contraseña">
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </mat-form-field>
+                      </div>
+                    </div>
                 </div>
+
+                <!-- <div class="example-container">
+                  <mat-form-field>
+                  <input matInput placeholder="Ingresa la contraseña" [type]="hide ? 'password' : 'text'" formControlName="contraseña">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                  </div>
+                </div> -->
 
                 <div class="row">
                   <div class="col-md-12">
@@ -83,7 +94,7 @@
 
 
                     <mat-form-field>
-                      <mat-label>Toppings</mat-label>
+                      <mat-label>Roles</mat-label>
                       <mat-select [formControl]="toppings" multiple>
                         <mat-select-trigger>
                           {{toppings?.value?.[0] || ''}}
@@ -196,10 +207,9 @@
           </div>
           <div class="card-body">
             <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
+            <h4 class="card-title">Nombre de fundador - co fundader</h4>
             <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
-              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+             Poner cualquier reseña a algo sobr eel fundador
             </p>
             <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
           </div>

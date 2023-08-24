@@ -31,4 +31,8 @@ export class CasaServiceService {
     return this.http.post<Casa>(`${this.url}/casa/crear`, casa);
   }
 
+  eliminarCasa(id_casa:number){
+    return this.http.delete(`${this.url}/casa/eliminar/${id_casa}`);
+  }
+
 }

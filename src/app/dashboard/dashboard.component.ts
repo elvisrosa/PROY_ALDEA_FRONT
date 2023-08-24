@@ -202,6 +202,7 @@ export class DashboardComponent implements OnInit {
     this.casaService.obetenerCasas().subscribe(
       {
         next: (resp: any) => {
+          console.log('Casas', resp)
           //this.casas = resp.filter(rep=>rep['estado']===1)
           this.casas = [...resp];
         },

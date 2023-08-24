@@ -52,12 +52,12 @@ import { CasasComponent } from './casas/casas.component';
   ],
   declarations: [
     AppComponent,
+    //CasasComponent,
     AdminLayoutComponent,
     LoginComponent,
     ButtonComponent,
     NinosCrearComponent,
     TableListComponent,
-    CasasComponent
     //UpgradeComponent
 
   ],

@@ -24,7 +24,7 @@
 
       <mat-form-field>
         <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fechaNacN">
+        <input matInput [matDatepicker]="picker" formControlName="fecha_nacimiento_niño">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -42,8 +42,8 @@
       <mat-form-field>
         <mat-label>Sexo</mat-label>
         <mat-select formControlName="sexo" required>
-          <mat-option value="M">masculino</mat-option>
-          <mat-option value="F">femenino</mat-option>
+          <mat-option value="M">Masculino</mat-option>
+          <mat-option value="F">Femenino</mat-option>
         </mat-select>
       </mat-form-field>
       <!-- <mat-form-field>

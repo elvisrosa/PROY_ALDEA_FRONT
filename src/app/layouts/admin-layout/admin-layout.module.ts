@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { CasasComponent } from '../../casas/casas.component';
 
 
 
@@ -48,6 +49,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     //TableListComponent,
     NotificationsComponent,
     UpgradeComponent,
+    CasasComponent
   ]
 })
 

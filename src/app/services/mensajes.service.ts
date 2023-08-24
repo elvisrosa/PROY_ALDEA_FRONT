@@ -9,10 +9,10 @@ export class MensajesService {
 
   constructor() { }
 
-  mostrarMensaje(titulo:string, mensaje:string, timer?:number){
+  mostrarMensaje(titulo:string, mensaje:string, timer?:number, icon?:any){
     Swal.fire({
       title:titulo,
-      icon:'error',
+      icon:icon,
       showLoaderOnConfirm: true,
       text:mensaje,
       timer:timer     

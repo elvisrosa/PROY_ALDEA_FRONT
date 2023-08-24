@@ -22,24 +22,24 @@
 
                             <div *ngIf="roles.includes('ADMIN') || roles.includes('ADMINT') ">
                                 <button mat-icon-button [matMenuTriggerFor]="menu"
-                                aria-label="Example icon-button with a menu">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>
-                                    <mat-icon>dialpad</mat-icon>
-                                    <span>Redial</span>
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
                                 </button>
-                                <button mat-menu-item disabled>
-                                    <mat-icon>voicemail</mat-icon>
-                                    <span>Check voice mail</span>
-                                </button>
-                                <button mat-menu-item (click)="habilitarDeshabilitar(car.idCasa)">
-                                    <mat-icon>{{(car.estado===1)?'notifications_off':'notifications_onn'}}</mat-icon>
-                                    <span>{{(car.estado===1)?'Deshabilitar':'Habilitar'}}</span>
-                                </button>
-                            </mat-menu>
-                        </div>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <mat-icon>dialpad</mat-icon>
+                                        <span>Bitacora</span>
+                                    </button>
+                                    <button mat-menu-item disabled>
+                                        <mat-icon>voicemail</mat-icon>
+                                        <span>Editar</span>
+                                    </button>
+                                    <button mat-menu-item (click)="habilitarDeshabilitar(car.idCasa)">
+                                        <mat-icon>{{(car.estado===1)?'notifications_off':'notifications_onn'}}</mat-icon>
+                                        <span>{{(car.estado===1)?'Deshabilitar':'Habilitar'}}</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
 
                         </div>
                     </div>
@@ -54,28 +54,3 @@
         </div>
 
 
-        <!-- <div class="row">
-            <div class="col-md-4">
-                <div class="card card-chart">
-                    <div class="card-header card-header-success">
-                        <div class="ct-chart" id="dailySalesChart"></div>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Daily Sales</h4>
-                        <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in
-                            today
-                            sales.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-    </div>
-</div>
