@@ -54,12 +54,12 @@ interface ExampleFlatNode {
 export const ROUTES: RouteInfo[] = [
   { path: '/principal', title: 'Principal', icon: 'dashboard', class: '', roles: ['ADMIN', 'ADMINT', 'TUTOR'] },
   { path: '/crear-niños', title: 'Crear Niño', icon: 'library_books', class: '', roles: ['ADMIN', 'ADMINT'] },
-  { path: '/casas', title: 'Casas', icon: 'dashboard', class: '', roles: ['ADMIN', 'ADMINT'] },
+  { path: '/casas', title: 'Casas', icon: 'home', class: '', roles: ['ADMIN', 'ADMINT'] },
   { path: '/lista-niños', title: 'Niños', icon: 'content_paste', class: '', roles: ['ADMIN', 'ADMINT'] },
   { path: '/notifications', title: 'Notificaciones', icon: 'notifications', class: '', roles: ['ADMIN', 'ADMINT', 'TUTOR'] },
   { path: '/perfil-usuario', title: 'Usuario - Crear', icon: 'person', class: '', roles: ['ADMIN', 'ADMINT'] },
-  { path: '/permiso-tutores', title: 'Permiso Tutores', icon: 'unarchive', class: '', roles: ['ADMINT'] },
-  { path: '/visor-pdf', title: 'Visor de Pdfs', icon: 'unarchive', class: 'nav-item flex-end', roles: ['ADMINT', 'ADMIN'] },
+  { path: '/permiso-tutores', title: 'Permiso Tutores', icon: 'supervisor_account', class: '', roles: ['ADMINT'] },
+  { path: '/visor-pdf', title: 'Visor de Pdfs', icon: 'visibility', class: 'nav-item flex-end', roles: ['ADMINT', 'ADMIN'] },
 
 ];
 

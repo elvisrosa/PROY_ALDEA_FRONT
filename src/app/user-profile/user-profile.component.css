@@ -16,5 +16,19 @@ mat-button-toggle-group {
 }
 
 .cuadro_perfil {
+
   margin-top: -70px;
+}
+
+.card-header {
+  background-color: #338b85;
+}
+
+.btn-success {
+
+  background-color: #3E54AC;
+}
+
+.card {
+  background-color: #DEDEDE;
 }

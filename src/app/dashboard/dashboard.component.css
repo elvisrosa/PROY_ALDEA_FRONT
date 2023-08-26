@@ -4,6 +4,7 @@
     font-weight: bold;
     font-size: 30px;
     margin-top: 80px;
+
 }
 
 .carta-contenido {
@@ -16,6 +17,11 @@
 
 }
 
+.card-category {
+    font-weight: bold;
+}
+
 .cuadro_perfil {
     margin-top: -70px;
+
 }

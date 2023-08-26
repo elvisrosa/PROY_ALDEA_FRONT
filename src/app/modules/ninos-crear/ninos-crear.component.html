@@ -1,11 +1,12 @@
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   <!-- {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}  -->
 </button>
+
 <h3 class="crear_ninos">Crear Niño</h3>
 
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+<mat-stepper class="form1" [linear]="isLinear" #stepper>
+  <mat-step class="form1" [stepControl]="firstFormGroup">
+    <form class="form1" [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Niños</ng-template>
       <mat-form-field>
         <mat-label>Cedula</mat-label>
@@ -51,7 +52,7 @@
         <input matInput placeholder="Ingrese telefono" formControlName="telefono" type="number" required>
       </mat-form-field> -->
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -78,7 +79,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn  btn-round">Siguiente</button>
         <!-- <button mat-button matStepperPrevious class="btn btn-danger btn-round">Regresar</button> -->
       </div>
 
@@ -96,7 +97,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn  btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -140,7 +141,7 @@
 
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn  btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -185,7 +186,7 @@
 
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -197,8 +198,7 @@
       <button mat-button matStepperNext class="btn btn-success btn-round" (click)="crear()">{{(nino.cedula) ? 'Editar':
         'Guardar'}}</button>
       <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
-      <button *ngIf="nino.cedula" mat-button matStepperNext class="btn btn-danger btn-round"
-        (click)="deleteByCedula(nino.cedula)">
+      <button *ngIf="nino.cedula" mat-button matStepperNext class="btn btn-round" (click)="deleteByCedula(nino.cedula)">
         Eliminar
       </button>
     </div>

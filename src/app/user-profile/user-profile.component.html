@@ -2,6 +2,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
+
       <div class="col-md-8 cuadro_perfil">
         <ng-container *ngIf="mostrarCrearEditar else asignarACasa">
           <div class="card">
@@ -182,13 +183,13 @@
               <mat-option *ngFor="let c of casas" [value]="c.idCasa">{{c.nombrecasa}} {{c.idCasa}} </mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid"
-            class="btn btn-danger pull-right" (click)="asignarTutorCasa()">Asignar</button>
+          <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid" class="btn btn-round "
+            (click)="asignarTutorCasa()">Asignar</button>
         </ng-template>
 
 
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="javascript:void(0)">
@@ -205,7 +206,7 @@
             <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

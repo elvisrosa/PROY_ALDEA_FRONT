@@ -1,58 +1,66 @@
-@mixin sidebar-background-color($background-color, $font-color){
-    .nav{
-        .nav-item{
-            .nav-link{
-              color: $font-color;
+@mixin sidebar-background-color($background-color, $font-color) {
+    .nav {
+        .nav-item {
+            .nav-link {
+                background: #4d82bc;
+
             }
-            i{
-              color: rgba($font-color, .8);
+
+            i {
+                background: #4d82bc;
             }
 
             &.active,
-            &:hover{
-                [data-toggle="collapse"]{
-                  color: $font-color;
-                    i{
-                        color: rgba($font-color, .8);
+            &:hover {
+                [data-toggle="collapse"] {
+                    background: #4d82bc;
+
+                    i {
+                        background: #4d82bc;
                     }
                 }
             }
         }
     }
-    .user{
-        a{
-          color: $font-color;
+
+    .user {
+        a {
+            background: #4d82bc;
         }
     }
-    .simple-text{
-        color: $font-color;
+
+    .simple-text {
+        background: #4d82bc;
     }
-    .sidebar-background:after{
-        background: $background-color;
+
+    .sidebar-background:after {
+        background: #4d82bc;
         opacity: .8;
     }
 }
 
-@mixin sidebar-active-color($font-color){
-    .nav{
-      .nav-item{
-            &.active > a:not([data-toggle="collapse"]){
-                color: $font-color;
+@mixin sidebar-active-color($font-color) {
+    .nav {
+        .nav-item {
+            &.active>a:not([data-toggle="collapse"]) {
+                background: #4d82bc;
                 opacity: 1;
                 @include shadow-big-color($font-color);
 
-                i{
-                    color: rgba($font-color, .8);
+                i {
+                    background: #4d82bc;
                 }
             }
         }
     }
 }
 
-@mixin set-background-color-button($color){
+@mixin set-background-color-button($color) {
 
-    li.active > a{
-        background-color: $color;
+    li.active>a {
+        background-color: #3E54AC;
+
         @include shadow-big-color($color);
+        /*aqui se cambia los botones*/
     }
 }

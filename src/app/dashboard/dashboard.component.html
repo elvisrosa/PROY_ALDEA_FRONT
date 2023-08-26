@@ -1,14 +1,15 @@
 <h3 class="principalcss">Principal</h3>
 <div class="main-content">
+
     <div class="container cuadro_perfil">
         <small>Vista general de los cursos</small>
         <div class="row">
             <ng-container *ngIf="casas.length>0 && !showCreateHouse; else noContent">
                 <div class="col-lg-3 col-md-6 col-sm-6 carta-contenido " *ngFor="let car of casas">
                     <div class="card card-stats">
-                        <div class="card-header card-header-danger card-header-warning card-header-icon">
+                        <div class="card-header  card-header-danger card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">content_copy</i>
+                                <i class="material-icons">store</i>
                             </div>
                             <p class="card-category">{{car.direccion}}</p>
                             <h3 class="card-title">Alumnos 43
