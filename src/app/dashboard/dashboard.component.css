@@ -1,0 +1,17 @@
+.principalcss {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+.carta-contenido {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carta {
+    width: calc(50% - 10px);
+
+}

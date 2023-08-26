@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Tutores</h4>
+                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="COLOR">
+                                    <th>
+                                        <b>#</b>
+                                    </th>
+                                    <th class="text-center">
+                                        Usuario
+                                    </th>
+                                    <th class="text-center">
+                                        Roles
+                                    </th>
+                                    <th  matTooltip="Si el usaurio no tiene tutor es porque es ADMINISTRADOR"  aria-label="Button that displays a tooltip when focused or hovered over" class="text-center">                             
+                                        Tutor
+                                    </th>
+       
+                                    <th class="text-center">
+                                        Bloqueado
+                                    </th>
+                                    <th class="text-center">
+                                        Habilitado
+                                    </th>
+                                    <th class="text-center">
+                                        Ver todo
+                                    </th>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let c of usuarios; let i = index">
+                                        <td><b>{{i+1}}</b></td>
+                                        <td class="text-center">
+                                            {{c.username}}
+                                        </td>
+                                        <td class="text-center">
+                                            <ul *ngFor="let cc of c.roles">
+                                                <li style="list-style: none;">{{cc.role}}</li>
+                                            </ul>                                         
+                                        </td>
+                                        <td class="text-center">
+                                            {{c.tutor?.idTutora}}
+                                        </td>
+                                        <td class="text-center">
+                                            <i [class]="c.locked ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
+                                        </td>
+                                        <!-- <td class="text-center"><i class="fa fa-check text-success"></i></td> -->
+                                        <!-- {{c.locked}} -->
+                                        <td class="text-center">
+                                            <i [class]="c.disabled ? 'fa fa-times text-danger' : 'fa fa-check text-success'"></i>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <button [routerLink]="['/perfil-usuario']" (click)="enviarDatosUusario(c)">
+                                                <i class="fa fa-question" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                    <tr *ngIf="!usuarios.length">
+                                        <span>No hay datos</span>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="container">
+        <small>Vista general de los cursos</small>
+        <div class="row">
+            <ng-container *ngIf="casas.length>0 && !showCreateHouse; else noContent">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let car of casas">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">content_copy</i>
+                            </div>
+                            <p class="card-category">{{car.direccion}}</p>
+                            <h3 class="card-title">Alumnos 43
+                                <small>GB</small>
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-info">info</i>
+                                <a href="javascript:void(0)">Ver mas...</a>
+                            </div>
+
+                            <div *ngIf="roles.includes('ADMIN') || roles.includes('ADMINT') ">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <mat-icon>dialpad</mat-icon>
+                                        <span>Bitacora</span>
+                                    </button>
+                                    <button mat-menu-item disabled>
+                                        <mat-icon>voicemail</mat-icon>
+                                        <span>Editar</span>
+                                    </button>
+                                    <button mat-menu-item (click)="habilitarDeshabilitar(car.idCasa)">
+                                        <mat-icon>{{(car.estado===1)?'notifications_off':'notifications_onn'}}</mat-icon>
+                                        <span>{{(car.estado===1)?'Deshabilitar':'Habilitar'}}</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-template #noContent>
+                Aun no tienes ninguna casa asignada, o tu casa esta en estado incativo!
+                Comunicate con usuario ADMINISTRADOR
+            </ng-template>
+
+        </div>
+
+
