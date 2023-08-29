@@ -1,17 +1,15 @@
 #login {
     background-color: rgba(255, 255, 255, 0.3);
     padding: 20px;
-
+    
 }
 
 .login-container {
-
     background-image: url('../../assets/img/fondo-horizontal.jpg');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-
+    min-height: 100vh;
 }
 
 #ajustar {
@@ -42,12 +40,46 @@
         background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
-        height: 100vh;
-
+        min-height: 100vh;
+        min-height: 100vh;
     }
 
     #login {
         margin-right: 40%;
     }
+}
+.text-center {
+    text-align: center;
+}
 
+.custom-form button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+footer {
+    background-color: rgba(51, 51, 51, 0.7);
+    color: white;
+    text-align: center;
+    width: 100%;
+    clear: both;
+    padding-top: 10px;
+    margin-top: 160px;
+    padding-bottom: 10px;
+    display: flex; /* Hacemos que el footer sea un contenedor flex */
+    justify-content: space-between; /* Distribuye los elementos al principio y al final */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+/* Estilos para el logotipo */
+.footer-logo {
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+/* Estilos para la frase */
+.text {
+    font-family: Arial, Helvetica, sans-serif;
+    flex-grow: 1; /* Hace que la frase ocupe el espacio restante y quede en el centro */
+    margin: 0; /* Quita cualquier margen que pueda afectar la alineación */
 }
