@@ -60,3 +60,37 @@
     }
 
 }
+
+section {
+    padding: 5.5px 0;
+
+}
+
+.contact-area {
+    border-bottom: 1px solid #7fafe693;
+}
+
+.contact-content h6 {
+    color: #161616;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.contact-content span {
+    color: #000000;
+    margin: 0 10px;
+}
+
+.contact-content img {
+    max-width: 100px;
+}
+
+section,
+footer {
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
