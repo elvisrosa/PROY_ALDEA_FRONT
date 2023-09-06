@@ -1,8 +1,12 @@
 .mat-stepper-horizontal {
-    margin-top: 8px;
-  }
-  
-  .mat-mdc-form-field {
-    margin-top: 16px;
-  }
-  
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.btn-round-gradient-blue {
+  background: rgb(51, 45, 140);
+  background: linear-gradient(90deg, rgba(51, 45, 140, 1) 90%, rgba(77, 170, 207, 1) 99%);
+}

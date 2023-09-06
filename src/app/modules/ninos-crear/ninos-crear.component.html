@@ -10,6 +10,7 @@
       <mat-form-field>
         <mat-label>Cedula</mat-label>
         <input matInput placeholder="Ingrese cedula" formControlName="cedula" type="number" required>
+        <mat-error *ngIf="firstFormGroup.get('cedula').invalid || firstFormGroup.get('cedula').hasError('pattern')">Inválido</mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -51,7 +52,7 @@
         <input matInput placeholder="Ingrese telefono" formControlName="telefono" type="number" required>
       </mat-form-field> -->
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round-gradient-blue  btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -78,7 +79,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round-gradient-blue  btn-round">Siguiente</button>
         <!-- <button mat-button matStepperPrevious class="btn btn-danger btn-round">Regresar</button> -->
       </div>
 
@@ -96,7 +97,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round-gradient-blue  btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -107,6 +108,8 @@
       <mat-form-field>
         <mat-label>Cedula</mat-label>
         <input matInput placeholder="Cedula" formControlName="cedula" type="number" maxlength="10" required>
+        <mat-error *ngIf="formControlPadre.get('cedula').invalid || formControlPadre.get('cedula').hasError('pattern')">Inválido</mat-error>
+
       </mat-form-field>
 
       <mat-form-field>
@@ -136,11 +139,13 @@
       <mat-form-field>
         <mat-label>Telefono</mat-label>
         <input matInput placeholder="Telefono" formControlName="telefono" type="number" required>
+        <mat-error *ngIf="formControlPadre.get('telefono').invalid || formControlPadre.get('telefono').hasError('pattern')">Inválido</mat-error>
+
       </mat-form-field>
 
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round-gradient-blue btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -151,6 +156,8 @@
       <mat-form-field>
         <mat-label>Cedula</mat-label>
         <input matInput placeholder="Cedula" formControlName="cedulam" type="number" maxlength="10" required>
+        <mat-error *ngIf="formControlMadre.get('cedulam').invalid || formControlMadre.get('cedulam').hasError('pattern')">Inválido</mat-error>
+
       </mat-form-field>
 
       <mat-form-field>
@@ -180,12 +187,14 @@
       <mat-form-field>
         <mat-label>Telefono</mat-label>
         <input matInput placeholder="Telefono" formControlName="telefonom" type="number" required>
+        <mat-error *ngIf="formControlMadre.get('telefonom').invalid || formControlMadre.get('telefonom').hasError('pattern')">Inválido</mat-error>
+
       </mat-form-field>
 
 
 
       <div>
-        <button mat-button matStepperNext class="btn btn-danger btn-round">Siguiente</button>
+        <button mat-button matStepperNext class="btn btn-round-gradient-blue  btn-round">Siguiente</button>
       </div>
     </form>
   </mat-step>

@@ -37,7 +37,6 @@ export class CasasComponent implements OnInit {
       numerocasa: [this.casa?.numerocasa || '', Validators.required],
       estado: [this.estado || '', Validators.required],
       direccion: [this.casa?.direccion || '', Validators.required],
-      img: [this.casa?.img || '', Validators.required]
     });
   }
 
@@ -117,8 +116,7 @@ export class CasasComponent implements OnInit {
       numerocasa: this.formCasa.get('numerocasa').value,
       estado: this.formCasa.get('estado').value,
       nombrecasa: this.formCasa.get('nombreecasa').value,
-      direccion: this.formCasa.get('direccion').value,
-      img: this.formCasa.get('img').value,
+      direccion: this.formCasa.get('direccion').value
     };
     return casa;
   }

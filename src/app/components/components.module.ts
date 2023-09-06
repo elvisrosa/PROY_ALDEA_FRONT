@@ -10,6 +10,7 @@ import { VisorPdfsComponent } from './visor-pdfs/visor-pdfs.component';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ParticipantsTableComponent } from './participants-table/participants-table.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     NavbarComponent,
     SidebarComponent,
     BitacoraCasaComponent,
-    VisorPdfsComponent
+    VisorPdfsComponent,
+    ParticipantsTableComponent
   ],
   exports: [
     FooterComponent,

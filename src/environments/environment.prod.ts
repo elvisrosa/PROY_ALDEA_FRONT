@@ -5,5 +5,8 @@ export const environment = {
 
 export const ENUN = {
   SUCCES:'success',
-  ERROR: 'error'
+  ERROR: 'error',
+  WARNING:'warning',
+  INFO:'info',
+  QUESTION:'question'
 }

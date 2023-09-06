@@ -3,18 +3,18 @@
         <small>Vista general de los cursos</small>
         <div class="row">
             <ng-container *ngIf="casas.length>0 && !showCreateHouse; else noContent">
-                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let car of casas">
+                <div class="col-lg-3 col-md-6 col-sm-6 carta-contenido" *ngFor="let car of casas">
                     <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-header  card-header-danger card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">content_copy</i>
+                                <i class="material-icons">store</i>
                             </div>
-                            <p class="card-category">{{car.direccion}}</p>
+                            <b><p class="card-category">{{car.direccion}}</p></b>
                             <h3 class="card-title">Alumnos 43
                                 <small>GB</small>
                             </h3>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer mt-auto">
                             <div class="stats">
                                 <i class="material-icons text-info">info</i>
                                 <a href="javascript:void(0)">Ver mas...</a>
@@ -52,5 +52,3 @@
             </ng-template>
 
         </div>
-
-

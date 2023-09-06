@@ -8,6 +8,7 @@ import { UpgradeComponent } from '../../tutores-permisos/upgrade.component';
 import { LoginGuard } from 'app/guards/login.guard';
 import { NinosCrearComponent } from 'app/modules/ninos-crear/ninos-crear.component';
 import { CasasComponent } from 'app/casas/casas.component';
+import { ParticipantsTableComponent } from 'app/components/participants-table/participants-table.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -63,5 +64,9 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: 'crear-niños',
         component: NinosCrearComponent
+    },
+    {
+        path: 'participantes',
+        component: ParticipantsTableComponent
     }
 ];

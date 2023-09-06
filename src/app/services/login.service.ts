@@ -23,7 +23,6 @@ export class AuthService {
   iniciarSesion(username: string, password: string) {
     return this.http.post(`${this.url}/auth/login`, { username, password }).pipe(
       tap((resp: any) => {
-        console.log(resp)
         if(resp.estado===true){
           this.isLogin=true;
           this.sharingS.setDataSharing = resp.usuario;

@@ -19,6 +19,11 @@ export class UsuariosService {
     return this.http.post<UsuarioModel>(`${this.url}/user/crear`, usuario);
   }
 
+  actualizarUsuario(usuario: UsuarioModel, username:string) {
+    return this.http.patch<UsuarioModel>(`${this.url}/user/actualizar/${username}`, usuario);
+  }
+
+
   eliminarUaurio(username:String){
     return this.http.delete(`${this.url}/user/${username}`);
   }

@@ -6,6 +6,7 @@ import { SharingServicesService } from 'app/services/sharing-services.service';
 import { Casa } from 'app/models/casa.modelo';
 import { Subscription } from 'rxjs';
 import { NiñoService } from 'app/services/niño.service';
+import { Router } from '@angular/router';
 
 
 declare const $: any;
@@ -19,7 +20,7 @@ declare interface RouteInfo {
 }
 
 interface FoodNode {
-  id:number;
+  id: number;
   name: string;
   children?: FoodNode[];
 }
@@ -30,11 +31,11 @@ const TREE_DATA: FoodNode[] = [
   //   children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
   // },
   {
-    id:0,
+    id: 0,
     name: 'Mis cursos',
     children: [
       {
-        id:null,
+        id: null,
         name: null,
         children: null,
       },
@@ -53,13 +54,13 @@ interface ExampleFlatNode {
 }
 export const ROUTES: RouteInfo[] = [
   { path: '/principal', title: 'Principal', icon: 'dashboard', class: '', roles: ['ADMIN', 'ADMINT', 'TUTOR'] },
-  { path: '/crear-niños', title: 'Crear Niño', icon: 'dashboard', class: '', roles: ['ADMIN', 'ADMINT'] },
-  { path: '/casas', title: 'Casas', icon: 'dashboard', class: '', roles: ['ADMIN', 'ADMINT'] },
+  { path: '/crear-niños', title: 'Crear Niño', icon: 'library_books', class: '', roles: ['ADMIN', 'ADMINT'] },
+  { path: '/casas', title: 'Casas', icon: 'home', class: '', roles: ['ADMIN', 'ADMINT'] },
   { path: '/lista-niños', title: 'Niños', icon: 'content_paste', class: '', roles: ['ADMIN', 'ADMINT'] },
   { path: '/notifications', title: 'Notificaciones', icon: 'notifications', class: '', roles: ['ADMIN', 'ADMINT', 'TUTOR'] },
   { path: '/perfil-usuario', title: 'Usuario - Crear', icon: 'person', class: '', roles: ['ADMIN', 'ADMINT'] },
-  { path: '/permiso-tutores', title: 'Permiso Tutores', icon: 'unarchive', class: 'active-pro', roles: ['ADMINT'] },
-  { path: '/visor-pdf', title: 'Visor de Pdfs', icon: 'unarchive', class: 'nav-item flex-end', roles: ['ADMINT', 'ADMIN'] },
+  { path: '/permiso-tutores', title: 'Permiso Tutores', icon: 'supervisor_account', class: '', roles: ['ADMINT'] },
+  { path: '/visor-pdf', title: 'Visor de Pdfs', icon: 'visibility', class: 'nav-item flex-end', roles: ['ADMINT', 'ADMIN'] }
 
 ];
 
@@ -76,7 +77,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   menuItems: any[];
   roles: string[];
   //data$: Observable<Casa[]>;
-  casaSubscription:Subscription | undefined;
+  casaSubscription: Subscription | undefined;
 
 
   ngOnInit(): void {
@@ -91,12 +92,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   constructor(
     private sharingS: SharingServicesService,
-    private niñoService:NiñoService
+    private niñoService: NiñoService,
+    private router:Router
   ) { }
- 
+
 
   ngOnDestroy(): void {
-    if(this.casaSubscription){
+    if (this.casaSubscription) {
       this.casaSubscription?.unsubscribe();
     }
   }
@@ -111,7 +113,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
             casaChildren = this.casa.map(casa => ({
               name: casa.nombrecasa,
               children: [
-                { name: casa.nombrecasa }, { name: 'Participantes', id:casa.idCasa}
+                { name: casa.nombrecasa }, { name: 'Participantes', id: casa.idCasa }
               ]
             }));
           };
@@ -122,9 +124,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
           };
           this.dataSource.data = TREE_DATA
         },
-        error: (error) =>  console.log(error)
+        error: (error) => console.log(error)
       }
-      
+
     );
   }
 
@@ -133,7 +135,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
-      id:node.id, //agregado
+      id: node.id, //agregado
       level: level,
     };
   };
@@ -169,12 +171,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
   }
 
-  findByIdHouse($event){
-    if($event.id===undefined) return;
-    if($event.id !== undefined || $event.id!==0){
+  findByIdHouse($event) {
+    if ($event.id === undefined) return;
+    if ($event.id !== undefined || $event.id !== 0) {
       this.niñoService.findByIdCasa($event.id).subscribe(
         {
-          next: (resp)=> this.sharingS.setDataListNiños = resp
+          next: (resp) => {
+            this.sharingS.setDataListNiños = resp;
+            if(this.sharingS.getDataListNiños){
+              this.router.navigateByUrl('/participantes');
+            }
+          }
         }
       )
     }

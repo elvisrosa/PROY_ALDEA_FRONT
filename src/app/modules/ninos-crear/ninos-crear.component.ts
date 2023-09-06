@@ -49,7 +49,7 @@ export class NinosCrearComponent implements OnInit {
 
   initFor() {
     this.firstFormGroup = this._formBuilder.group({
-      cedula: [this.nino?.cedula || '', [Validators.required]],
+      cedula: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       nombre: [this.nino?.nombres || '', [Validators.required]],
       apellido: [this.nino?.apellidos || '', [Validators.required]],
       fecha_nacimiento_niño: [this.nino?.fechaNacimiento || '', [Validators.required]],
@@ -68,21 +68,21 @@ export class NinosCrearComponent implements OnInit {
     });
 
     this.formControlPadre = this._formBuilder.group({
-      cedula: [this.nino?.padre?.cedula || '', Validators.required],
+      cedula: [this.nino?.padre?.cedula || '', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       nombres: [this.nino?.padre?.nombre || '', Validators.required],
       apellidos: [this.nino?.padre?.apellidos || '', Validators.required],
       fechaPaNaci: [this.nino?.padre?.fechaNacimiento || '', Validators.required],
       edad: [this.nino?.padre?.edad || '', Validators.required],
-      telefono: [this.nino?.padre?.telefono || '', Validators.required]
+      telefono: [this.nino?.padre?.telefono || '', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
 
     this.formControlMadre = this._formBuilder.group({
-      cedulam: [this.nino?.madre?.cedula || '', Validators.required],
+      cedulam: [this.nino?.madre?.cedula || '', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       nombresm: [this.nino?.madre?.nombre || '', Validators.required],
       apellidosm: [this.nino?.madre?.apellidos || '', Validators.required],
       fechaPaNacim: [this.nino?.madre?.fechaNacimiento || '', Validators.required],
       edadm: [this.nino?.madre?.edad || '', Validators.required],
-      telefonom: [this.nino?.madre?.telefono || '', Validators.required]
+      telefonom: [this.nino?.madre?.telefono || '', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
 
     this.getninoByCedula();
@@ -146,6 +146,7 @@ export class NinosCrearComponent implements OnInit {
 
   public crear() {
     const datosnino: NinoEntity = this.obtenerDatosnino();
+    if(this.fomrsValid()){
     this.niñoService.crearNino(datosnino).subscribe(
       {
         next: (resp: any) => {
@@ -153,9 +154,12 @@ export class NinosCrearComponent implements OnInit {
           this.limpiarCampos();
           this.router.navigateByUrl('/lista-niños');
         },
-        error: (error) => this.mensajes.mostrarMensaje('Informacion del sistema',  error.message.concat(' - ' + error), 2000, ENUN.ERROR)
+        error: (error) => this.mensajes.mostrarMensaje('Informacion del sistema', error.message.concat(' - ' + error), 2000, ENUN.ERROR)
       }
     );
+    }else{
+      this.mensajes.mostrarMensaje('Registro', 'Formulario inválido, revisa campos requeridos (*)', 3500, ENUN.WARNING);
+    }
   }
 
 
@@ -180,6 +184,18 @@ export class NinosCrearComponent implements OnInit {
     this.formControlPadre.reset();
     this.formControlMadre.reset();
     this.casaForm.reset();
+  }
+
+  private fomrsValid(): boolean {
+    if (this.firstFormGroup.valid &&
+      this.secondFormGroup.valid &&
+      this.formControlPadre.valid &&
+      this.formControlMadre.valid &&
+      this.casaForm.valid) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

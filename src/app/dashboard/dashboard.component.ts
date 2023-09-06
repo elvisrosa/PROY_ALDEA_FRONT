@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Casa } from 'app/models/casa.modelo';
 import { CasaServiceService } from 'app/services/casa-service.service';
-import { AuthService } from 'app/services/login.service';
 import * as Chartist from 'chartist';
-import { event } from 'jquery';
-import { Role } from '../models/usuario.model';
 import { SharingServicesService } from 'app/services/sharing-services.service';
 
 @Component({
@@ -91,6 +86,7 @@ export class DashboardComponent implements OnInit {
 
     });
   }
+
   ngOnInit() {
     this.$sharingS.getDataSharing.subscribe(
       {
@@ -191,43 +187,47 @@ export class DashboardComponent implements OnInit {
   habilitarDeshabilitar(casa_id:number){
     this.casaService.cambiarEstadoCasa(casa_id).subscribe({
       next: resp => {
-        console.log(resp);
         this.router.navigate(['/principal'])
       }
     });
-    console.log(casa_id)
   }
 
   obtenerCasas() {
     this.casaService.obetenerCasas().subscribe(
       {
         next: (resp: any) => {
-          console.log('Casas', resp)
           //this.casas = resp.filter(rep=>rep['estado']===1)
           this.casas = [...resp];
         },
-        error: error => console.log("error" + error.message)
+        error: error => console.log(error)
       }
     )
   }
   id?: number = 0;
-  traerCasaPorPerfilTutor() {
-    this.$sharingS.getDataSharing.subscribe(      {
-        next: resp => {
-          this.id = resp['tutor'].idTutora;
-        }
-      }
-    )
 
-    this.casaService.obtenerCasaPorTutor(this.id).subscribe(
-      {
-        next: (resp: any) => {
-          this.casas = resp.filter(casa => casa.estado === 1);
-          this.$sharingS.setCasaSharing = resp.filter(casa => casa.estado === 1) ;
-          //this.casas = [...resp];
-        }
+  traerCasaPorPerfilTutor() {
+    // this.$sharingS.getDataSharing.subscribe(      {
+    //     next: resp => {
+    //       this.id = resp['tutor'].idTutora;
+    //     }
+    //   }
+    // )
+
+    // this.casaService.obtenerCasaPorTutor(this.id).subscribe(
+    //   {
+    //     next: (resp: any) => {
+    //       this.casas = resp.filter(casa => casa.estado === 1);
+    //       this.$sharingS.setCasaSharing = resp.filter(casa => casa.estado === 1) ;
+    //       //this.casas = [...resp];
+    //     }
+    //   }
+    // )
+
+    this.$sharingS.getCasaSharing.subscribe({
+      next: (resp)=>{
+        this.casas = resp.filter(casa => casa.estado === 1);
       }
-    )
+    })
 
   }
 

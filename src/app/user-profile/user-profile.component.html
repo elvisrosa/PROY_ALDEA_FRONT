@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-header card-header-danger">
               <h4 class="card-title">{{(usuario.username) ? 'Editar Perfil de usuario':'Crear perfil de usuario'}}</h4>
-              <p class="card-category">{{usuario.tutor?.nombre || 'Usuario'}}</p>
+              <p class="card-causernametegory">{{usuario.tutor?.nombre || 'Usuario'}}</p>
             </div>
             <div class="card-body">
               <form [formGroup]="form">
@@ -22,11 +22,17 @@
                   <div class="col-md-3">
                     <mat-form-field class="example-full-width">
                       <input matInput placeholder="Usuario" formControlName="username">
+                      <mat-error
+                        [ngClass]="form.get('username').hasError('pattern') ? 'error-message' : 'correct-message'">
+                        {{ getErrorUsername() }}
+                      </mat-error>
                     </mat-form-field>
+
                   </div>
                   <div class="col-md-4">
                     <mat-form-field class="example-full-width">
                       <input matInput placeholder="Correo electronico" type="email" formControlName="correo">
+                      <mat-error *ngIf="form.get('correo').hasError('email')">Correo no válido</mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -44,20 +50,21 @@
                   <div class="col-md-6">
                     <div class="example-container">
                       <mat-form-field>
-                      <input matInput placeholder="Ingresa la contraseña" [type]="hide ? 'password' : 'text'" formControlName="contraseña">
-                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <input matInput placeholder="Ingresa la contraseña" [type]="hide ? 'password' : 'text'"
+                          formControlName="contraseña">
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                       </mat-form-field>
-                      </div>
+
                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-error
+                      [ngClass]="form.get('contraseña').hasError('pattern') ? 'error-message' : 'correct-message'">
+                      {{ getErrorMessage() }}
+                    </mat-error>
+                  </div>
                 </div>
 
-                <!-- <div class="example-container">
-                  <mat-form-field>
-                  <input matInput placeholder="Ingresa la contraseña" [type]="hide ? 'password' : 'text'" formControlName="contraseña">
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </mat-form-field>
-                  </div>
-                </div> -->
 
                 <div class="row">
                   <div class="col-md-12">
@@ -167,12 +174,12 @@
                 <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="eliminarUsuario()"
                   *ngIf="usuario.username">Eliminar</button> -->
 
-                  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
-                    <mat-button-toggle type="button"  (click)="crearUsuario()" 
-                    class="btn-success">{{(usuario.username) ? 'Editar': 'Crear Usuario'}}</mat-button-toggle>
-                    <mat-button-toggle  type="button" class="btn-danger" (click)="eliminarUsuario()"
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
+                  <mat-button-toggle type="button" (click)="accionSubmit()" class="btn-success">{{(usuario.username) ?
+                    'Editar': 'Crear Usuario'}}</mat-button-toggle>
+                  <mat-button-toggle type="button" class="btn-danger" (click)="eliminarUsuario()"
                     *ngIf="usuario.username">Eliminar</mat-button-toggle>
-                  </mat-button-toggle-group>
+                </mat-button-toggle-group>
 
                 <div class="clearfix"></div>
               </form>
@@ -181,19 +188,19 @@
         </ng-container>
 
         <ng-template #asignarACasa>
-            <h3 class="col-md-12">El usuario que vas a agregar la casa es el Siguiente: {{nombre_tutora}} con cedula
-              {{cedula_tutora}}</h3>
-            <div class="col-md-12">
-              <span>ELIGE LA CASA A LA QUE ESTE TUTOR ESTARA ENCARGADO</span>
-            </div>
-            <mat-form-field [formGroup]="form">
-              <mat-label>Casas</mat-label>
-              <mat-select formControlName="casaControl">
-                <mat-option *ngFor="let c of casas" [value]="c.idCasa">{{c.nombrecasa}} {{c.idCasa}} </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid"
-              class="btn btn-danger pull-right" (click)="asignarTutorCasa()">Asignar</button>
+          <h3 class="col-md-12">El usuario que vas a agregar la casa es el Siguiente: {{nombre_tutora}} con cedula
+            {{cedula_tutora}}</h3>
+          <div class="col-md-12">
+            <span>ELIGE LA CASA A LA QUE ESTE TUTOR ESTARA ENCARGADO</span>
+          </div>
+          <mat-form-field [formGroup]="form">
+            <mat-label>Casas</mat-label>
+            <mat-select formControlName="casaControl">
+              <mat-option *ngFor="let c of casas" [value]="c.idCasa">{{c.nombrecasa}} {{c.idCasa}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button type="submit" [disabled]="!form.get('casaControl').valid"
+            class="btn btn-danger pull-right" (click)="asignarTutorCasa()">Asignar</button>
         </ng-template>
 
 
@@ -202,16 +209,18 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="javascript:void(0)">
-              <img class="img" src="./assets/img/gears.gif" />
+              <img class="img" src="./assets/img/danger.gif" />
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Nombre de fundador - co fundader</h4>
+            <h6 class="card-category text-gray">PERMISOS / USUARIOS</h6>
+            <h4 class="card-title">Roles - ADMIN-TUTOR</h4>
             <p class="card-description">
-             Poner cualquier reseña a algo sobr eel fundador
+              Recuerda que el rol ADMIN da acceso a todo el sistema - El Rol ADMINT tiene acceso a todo el sistema y
+              adicional acceso a modificar datos de usuario, es recomendable que el rol ADMINT lo tenga 1 sola persona,
+              restringue este rol solo a
+              personas encargadas
             </p>
-            <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
           </div>
         </div>
       </div>

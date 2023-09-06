@@ -29,19 +29,14 @@
                         <input matInput placeholder="Dirección" formControlName="direccion" required>
                     </mat-form-field>
                 </div>
-                <div class="col">
-                    <mat-form-field>
-                        <mat-label>Imagen</mat-label>
-                        <input matInput placeholder="Imagen" formControlName="img" required>
-                    </mat-form-field>
-                </div>
+               
                 <div class="col">
                     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="pull-right">
                         <mat-button-toggle type="button" class="btn-success" (click)="createCasa()">{{(casa?.idCasa) ?
                             'Editar': 'Crear Usuario'}}</mat-button-toggle>
                         <mat-button-toggle type="button" class="btn-danger" (click)="eliminarCasa()"
                             *ngIf="casa?.idCasa">Eliminar</mat-button-toggle>
-                        <mat-button-toggle type="button" class="btn-warning" (click)="limpiar()"
+                        <mat-button-toggle type="button" class="btn-round-gradient-blue" (click)="limpiar()"
                         >Limpiar</mat-button-toggle>
                     </mat-button-toggle-group>
                 </div>

@@ -7,6 +7,8 @@ import { CasaServiceService } from 'app/services/casa-service.service';
 import { MensajesService } from 'app/services/mensajes.service';
 import { UsuariosService } from 'app/services/usuarios.service';
 import { CommonModule } from '@angular/common';
+import { ComponentFixture } from '@angular/core/testing';
+import { ENUN } from 'environments/environment.prod';
 
 @Component({
   selector: 'app-user-profile',
@@ -49,13 +51,16 @@ export class UserProfileComponent implements OnInit {
 
   initForm(): void {
     this.form = this._build.group({
-      username: [this.usuario?.username, Validators.required],
-      correo: [this.usuario.tutor?.correo || '', Validators.required],
-      nombres: [this.usuario.tutor?.nombre || '', Validators.required],
-      contraseña: [''],
+      username: [this.usuario?.username, [Validators.required, Validators.pattern(/^(?=.*[a-z])[a-z]{6,15}$/)]],
+      correo: [this.usuario.tutor?.correo || '', [Validators.required, Validators.email]],
+      nombres: [this.usuario?.nombres || '', Validators.required],
+      contraseña: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)
+      ]],
       roles: [this.toppings || ''],
       //roles: this.rolesFormControl, // Asigna el FormControl creado a 'roles'
-      apellidos: [this.usuario.tutor?.apellido || ''],
+      apellidos: [this.usuario?.apellidos || ''],
       cedula: [this.usuario.tutor?.cedula || ''],
       telefono: [this.usuario.tutor?.telefono || ''],
       bloqueado: [this.usuario?.locked || '', Validators.required],
@@ -67,42 +72,79 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  getErrorMessage() {
+    if (this.form.get('contraseña').hasError('pattern')) {
+      return 'Minimo 8 caracteres - Maximo 15 - Al menos una letra mayúscula - Al menos una letra minucula - Al menos un dígito - No espacios en blanco - Al menos 1 caracter especial';
+    } else {
+      return this.form.get('contraseña').value ? 'Correcto' : '';
+    }
+  }
+
+  getErrorUsername() {
+    if (this.form.get('username').hasError('pattern')) {
+      return 'Solo minusculas de 6 hasta 15 de longitud - Sin caracteres - Sin números';
+    } else {
+      return (this.form.get('username').value) ? 'Correcto' : '';
+    }
+  }
+
+
+  accionSubmit() {
+    if (this.usuario.username) {
+      this.actualizarUser();
+    } else {
+      this.crearUsuario();
+    }
+  }
 
   public crearUsuario() {
-    console.log('Traer datos', this.traerDatos())
     if (this.form.valid) {
 
       this.usarioService.crearUsuario(this.traerDatos()).subscribe(
         {
           next: (resp) => {
-            console.log('resp crear', resp)
             if (resp != null) {
-              console.log('resp id-tutora', resp.tutor.idTutora)
               this.id_tutor_creado = resp.tutor.idTutora;
               this.cedula_tutora = resp.tutor.cedula;
               this.nombre_tutora = resp.tutor.nombre;
-              this.msjS.mostrarMensaje('Usuario', 'Usuario creado con exito', 2000);
+              this.msjS.mostrarMensaje('Usuario', 'Usuario creado con exito', 2000, ENUN.SUCCES);
               this.limpiarForm();
               this.mostrarCrearEditar = false;
               this.traerCasas();
             } else {
-              this.msjS.mostrarMensaje('Usuario', 'Usuario no creado', 2000);
+              this.msjS.mostrarMensaje('Usuario', 'Usuario no creado', 2000, ENUN.ERROR);
             }
 
           },
-          error: (error) => this.msjS.mostrarMensaje('Usuario', 'Error al crear el usuario '.concat(error), 2000)
+          error: (error) => this.msjS.mostrarMensaje('Usuario', 'Error al crear el usuario '.concat(error), 2000, ENUN.ERROR)
         }
       )
     } else {
-      this.msjS.mostrarMensaje('Usuario', 'Formulario invalido', 2000)
+      this.msjS.mostrarMensaje('Usuario', 'Formulario invalido', 2000, ENUN.WARNING)
     }
+  }
+
+  actualizarUser() {
+    this.usarioService.actualizarUsuario(this.traerDatos(), this.usuario.username).subscribe(
+      {
+        next: (resp: any) => {
+          this.msjS.mostrarMensaje('Usuario', resp.message, 1200, ENUN.SUCCES);
+          this.limpiarForm();
+          this.router.navigateByUrl('/permiso-tutores');
+        },
+        error: (error: any) => {
+          this.msjS.mostrarMensaje('Usuario', error.message, 1200, ENUN.SUCCES);
+
+        }
+      }
+    )
   }
 
   public eliminarUsuario() {
     this.usarioService.eliminarUaurio(this.usuario.username).subscribe(
       {
         next: (resp: any) => {
-          this.msjS.mostrarMensaje('Usuario', resp.message, 1500, 'succes');
+          this.msjS.mostrarMensaje('Usuario', resp.message, 1500, ENUN.SUCCES);
           this.limpiarForm();
           this.router.navigateByUrl('/permiso-tutores');
         },
@@ -119,8 +161,8 @@ export class UserProfileComponent implements OnInit {
       password: this.form.get('contraseña').value,
       nombres: this.form.get('nombres').value,
       apellidos: this.form.get('apellidos').value,
-      disabled: false,
-      locked: false,
+      disabled: this.form.get('habilitado').value,
+      locked: this.form.get('bloqueado').value,
       tutor: {
         idTutora: this.usuario?.tutor?.idTutora,
         apellido: this.form.get('apellidos').value,
@@ -132,7 +174,7 @@ export class UserProfileComponent implements OnInit {
       roles: this.toppings.value.map((role: string) => ({ role }))
       //roles: this.form.get('roles').value.map((role: string) => ({ role }))
     }
-    if(this.form.get('contraseña').value.trim() === ''){
+    if (this.form.get('contraseña').value.trim() === '') {
       datosUsuario.password = undefined;
     }
     return datosUsuario;
@@ -158,11 +200,12 @@ export class UserProfileComponent implements OnInit {
     let id_casa = this.form.get('casaControl')?.value;
     this.usarioService.asignarTutorAcasa(this.id_tutor_creado, id_casa).subscribe(
       {
-        next: (resp) => { 
-          this.msjS.mostrarMensaje('Mensaje del sistema', 'Se agrego el usuario a la casa seleccioanda', 2000);
-           this.form.get('casaControl').reset(); 
-           this.router.navigateByUrl('/permiso-tutores') },
-        error: (error) => this.msjS.mostrarMensaje('Mensaje del sistema', 'Ocurrio al asignarle una casa: '.concat(error), 2000)
+        next: (resp) => {
+          this.msjS.mostrarMensaje('Mensaje del sistema', 'Se agrego el usuario a la casa seleccioanda', 2000, ENUN.SUCCES);
+          this.form.get('casaControl').reset();
+          this.router.navigateByUrl('/permiso-tutores')
+        },
+        error: (error) => this.msjS.mostrarMensaje('Mensaje del sistema', 'Ocurrio al asignarle una casa: '.concat(error), 2000, ENUN.ERROR)
       }
     )
   }

@@ -1,4 +1,10 @@
 .estatico {
     position: fixed;
 
+
+}
+
+
+.d-md-block {
+    font-weight: bold;
 }

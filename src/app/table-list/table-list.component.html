@@ -45,10 +45,10 @@
                                         <td><a href="">{{n.madre?.cedula}}</a></td>
                                         <td><a href="">{{n.estudios?.idEstudio}}</a></td>
                                                                              
-                                        <td class="text-center">
-                                            <button (click)="getAllDataById(n)">
+                                        <td>
+                                            <a (click)="getAllDataById(n)" style="cursor: pointer;">
                                                 <i class="fa fa-question" aria-hidden="true"></i>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
